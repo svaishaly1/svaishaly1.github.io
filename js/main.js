@@ -353,14 +353,20 @@
     if (!filterEl || !gridEl) return;
     if (typeof portfolioCategories === 'undefined' || typeof portfolioProjects === 'undefined') return;
 
+    const hasAllCategory = portfolioCategories.some(function (cat) { return cat.id === 'all'; });
+    const defaultFilter = hasAllCategory
+      ? 'all'
+      : (portfolioCategories[0] ? portfolioCategories[0].id : 'all');
+    currentFilter = defaultFilter;
+
     /* Render filter buttons */
     portfolioCategories.forEach(function (cat) {
       const btn = document.createElement('button');
-      btn.className  = 'filter-btn' + (cat.id === 'all' ? ' is-active' : '');
+      btn.className  = 'filter-btn' + (cat.id === defaultFilter ? ' is-active' : '');
       btn.textContent = cat.label;
       btn.dataset.filter = cat.id;
       btn.setAttribute('role', 'tab');
-      btn.setAttribute('aria-selected', cat.id === 'all' ? 'true' : 'false');
+      btn.setAttribute('aria-selected', cat.id === defaultFilter ? 'true' : 'false');
 
       btn.addEventListener('click', function () {
         currentFilter = cat.id;
@@ -377,7 +383,7 @@
     });
 
     /* Initial render */
-    renderGrid('all');
+    renderGrid(defaultFilter);
   }
 
   function renderGrid(filter) {
@@ -469,6 +475,28 @@
     return cat ? cat.label.replace(/^\d+ — /, '') : catId;
   }
 
+  function getProjectMedia(project) {
+    const media = [];
+
+    if (project.coverImage && project.coverImage.trim()) {
+      media.push({
+        src: project.coverImage,
+        alt: project.title,
+        fit: 'cover',
+      });
+    }
+
+    (project.images || []).forEach(function (image) {
+      media.push({
+        src: image.src,
+        alt: image.alt || project.title,
+        fit: image.fit || 'cover',
+      });
+    });
+
+    return media;
+  }
+
 
   /* ----------------------------------------------------------
      11. PROJECT MODAL
@@ -498,6 +526,7 @@
     if (!modal || !modalBody) return;
 
     modalBody.innerHTML = buildModalContent(project);
+    initProjectGallery(modalBody);
 
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
@@ -541,8 +570,8 @@
   }
 
   function buildModalContent(project) {
-    const images = project.images || [];
-    const hasImages = images.length > 0;
+    const media = getProjectMedia(project);
+    const hasImages = media.length > 0;
     const hasCover  = project.coverImage && project.coverImage.trim() !== '';
 
     /* Tags row */
@@ -588,14 +617,32 @@
     /* Gallery */
     let galleryHtml = '';
     if (hasImages) {
-      const thumbsHtml = images.map(function (img, i) {
-        return '<div class="gallery-item">' +
+      const slidesHtml = media.map(function (img, i) {
+        return '<button class="gallery-slide" type="button" data-lightbox data-index="' + i + '">' +
           '<img src="' + sanitiseAttr(img.src) + '" alt="' + sanitiseAttr(img.alt || project.title) + '" ' +
-          'style="object-fit:' + sanitiseAttr(img.fit || 'cover') + '" ' +
-          'data-lightbox data-index="' + i + '" loading="lazy">' +
-        '</div>';
+          'style="object-fit:' + sanitiseAttr(img.fit || 'cover') + '" loading="lazy">' +
+        '</button>';
       }).join('');
-      galleryHtml = '<div class="proj-gallery"><h3>Project Images</h3><div class="gallery-grid">' + thumbsHtml + '</div></div>';
+
+      const thumbsHtml = media.map(function (img, i) {
+        return '<button class="gallery-thumb" type="button" data-thumb-index="' + i + '">' +
+          '<img src="' + sanitiseAttr(img.src) + '" alt="' + sanitiseAttr(img.alt || project.title) + '" ' +
+          'style="object-fit:' + sanitiseAttr(img.fit || 'cover') + '" loading="lazy">' +
+        '</button>';
+      }).join('');
+
+      galleryHtml =
+        '<div class="proj-gallery">' +
+          '<h3>Project Images</h3>' +
+          '<div class="project-gallery" data-project-gallery>' +
+            '<button class="project-gallery-arrow project-gallery-arrow--prev" type="button" data-gallery-prev aria-label="Previous image">←</button>' +
+            '<div class="project-gallery-viewport">' +
+              '<div class="project-gallery-track">' + slidesHtml + '</div>' +
+            '</div>' +
+            '<button class="project-gallery-arrow project-gallery-arrow--next" type="button" data-gallery-next aria-label="Next image">→</button>' +
+          '</div>' +
+          '<div class="project-gallery-thumbs">' + thumbsHtml + '</div>' +
+        '</div>';
     } else {
       galleryHtml =
         '<div class="proj-gallery">' +
@@ -637,6 +684,75 @@
     '</div>';
   }
 
+  function initProjectGallery(root) {
+    const gallery = root.querySelector('[data-project-gallery]');
+    if (!gallery) return;
+
+    const viewport = gallery.querySelector('.project-gallery-viewport');
+    const track = gallery.querySelector('.project-gallery-track');
+    const slides = Array.from(gallery.querySelectorAll('.gallery-slide'));
+    const thumbs = Array.from(gallery.querySelectorAll('[data-thumb-index]'));
+    const prevBtn = gallery.querySelector('[data-gallery-prev]');
+    const nextBtn = gallery.querySelector('[data-gallery-next]');
+
+    if (!viewport || !track || slides.length === 0) return;
+
+    function scrollToIndex(index) {
+      const slide = slides[index];
+      if (!slide) return;
+      slide.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      setActiveThumb(index);
+    }
+
+    function currentIndex() {
+      const viewportRect = viewport.getBoundingClientRect();
+      let closest = 0;
+      let closestDistance = Infinity;
+
+      slides.forEach(function (slide, index) {
+        const rect = slide.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - (viewportRect.left + viewportRect.width / 2));
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closest = index;
+        }
+      });
+
+      return closest;
+    }
+
+    function setActiveThumb(index) {
+      thumbs.forEach(function (thumb, thumbIndex) {
+        thumb.classList.toggle('is-active', thumbIndex === index);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        scrollToIndex(Math.max(0, currentIndex() - 1));
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        scrollToIndex(Math.min(slides.length - 1, currentIndex() + 1));
+      });
+    }
+
+    thumbs.forEach(function (thumb) {
+      thumb.addEventListener('click', function () {
+        const index = parseInt(thumb.getAttribute('data-thumb-index'), 10);
+        scrollToIndex(index);
+      });
+    });
+
+    gallery.addEventListener('scroll', function () {
+      setActiveThumb(currentIndex());
+    }, { passive: true });
+
+    setActiveThumb(0);
+  }
+
 
   /* ----------------------------------------------------------
      12. LIGHTBOX
@@ -663,11 +779,7 @@
     if (!lb) return;
 
     // Build image array: cover first, then gallery
-    const imgs = [];
-    if (project.coverImage && project.coverImage.trim()) {
-      imgs.push({ src: project.coverImage, alt: project.title });
-    }
-    (project.images || []).forEach(function (img) { imgs.push(img); });
+    const imgs = getProjectMedia(project);
 
     if (imgs.length === 0) return;
 
@@ -748,20 +860,21 @@
       const target  = parseInt(el.dataset.count, 10);
       const suffix  = el.dataset.suffix || '';
       if (isNaN(target)) return;
+      const counter = { val: 0 };
 
       ScrollTrigger.create({
         trigger: el,
         start:   'top 85%',
         once:    true,
         onEnter: function () {
-          gsap.fromTo(
-            { val: 0 },
-            { val: target, duration: 1.6, ease: 'power2.out',
-              onUpdate: function () {
-                el.textContent = Math.round(this.targets()[0].val) + suffix;
-              }
-            }
-          );
+          gsap.to(counter, {
+            val: target,
+            duration: 1.6,
+            ease: 'power2.out',
+            onUpdate: function () {
+              el.textContent = Math.round(counter.val) + suffix;
+            },
+          });
         },
       });
     });
@@ -837,7 +950,7 @@
     if (str === null || str === undefined) return '';
     const s = String(str).trim();
     if (/^javascript:/i.test(s) || /^data:/i.test(s)) return '';
-    return s
+    return encodeURI(s)
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
   }

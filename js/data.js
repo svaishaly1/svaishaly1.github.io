@@ -62,21 +62,37 @@ const siteConfig = {
 };
 
 
+function assetPath(folder, fileName) {
+  return 'assets/images/portfolio/' + folder + '/' + fileName;
+}
+
+function imageItem(src, alt, fit) {
+  return { src: src, alt: alt, fit: fit || 'cover' };
+}
+
+function buildSequenceImages(folder, prefix, start, end, suffix, pad, altPrefix, fit) {
+  const images = [];
+  for (let index = start; index <= end; index += 1) {
+    const fileNumber = String(index).padStart(pad, '0');
+    const fileName = prefix + fileNumber + suffix;
+    images.push(imageItem(assetPath(folder, fileName), altPrefix + ' ' + fileNumber, fit));
+  }
+  return images;
+}
+
+
 /* ============================================================
    PORTFOLIO CATEGORIES
    Controls the filter tabs in the portfolio section.
    id must match the 'category' field on each project.
    ============================================================ */
 const portfolioCategories = [
-  { id: 'all',           label: 'All Work' },
   { id: 'womenswear',    label: '01 — Womenswear' },
   { id: 'menswear',      label: '02 — Menswear' },
   { id: 'kidswear',      label: '03 — Kidswear' },
   { id: 'graphic-print', label: '04 — Graphic / Print' },
-  { id: 'technical',     label: '05 — Technical Design' },
-  { id: 'tech-packs',    label: '06 — Tech Packs' },
-  { id: 'trend-concept', label: '07 — Trend / Concept' },
-  { id: 'accessories',   label: '08 — Accessories / Other' },
+  { id: 'tech-packs',    label: '05 — Tech Packs' },
+  { id: 'collage-works', label: '06 — Collage Works' },
 ];
 
 
@@ -114,25 +130,7 @@ const portfolioProjects = [
      *   3. Set fit: 'contain' for flat sketches; 'cover' for photography
      */
     coverImage: '',
-    // coverImage: 'assets/images/portfolio/nautica-kidswear-ss25/cover.jpg',
-
-    images: [
-      // {
-      //   src:  'assets/images/portfolio/nautica-kidswear-ss25/moodboard.jpg',
-      //   alt:  'Nautica Kidswear SS25 — Moodboard',
-      //   fit:  'contain',
-      // },
-      // {
-      //   src:  'assets/images/portfolio/nautica-kidswear-ss25/sketch-1.jpg',
-      //   alt:  'Nautica Kidswear SS25 — Design Sketches',
-      //   fit:  'contain',
-      // },
-      // {
-      //   src:  'assets/images/portfolio/nautica-kidswear-ss25/final-1.jpg',
-      //   alt:  'Nautica Kidswear SS25 — Final Product',
-      //   fit:  'cover',
-      // },
-    ],
+    images: [],
 
     process: {
       challenge:          'Delivering a commercially strong seasonal range for a premium international kidswear brand within fast-paced e-commerce timelines.',
@@ -153,7 +151,7 @@ const portfolioProjects = [
   {
     id:          'house-of-pataudi-sportsline',
     title:       'House of Pataudi — Men\'s Sportsline',
-    category:    'menswear',
+    category:    'tech-packs',
     subcategory: 'sportswear',
     brand:       'House of Pataudi',
     season:      'AW24',
@@ -164,10 +162,17 @@ const portfolioProjects = [
 
     description: 'Managed the complete product lifecycle for House of Pataudi Men\'s Sportsline — from initial concept and trend research through tech packs, fit approvals, vendor coordination and market launch.',
 
-    coverImage: '',
-    // coverImage: 'assets/images/portfolio/house-of-pataudi-sportsline/cover.jpg',
-
-    images: [],
+    coverImage: assetPath('house-of-pataudi-sportsline', 'COVER.JPG.jpeg'),
+    images: buildSequenceImages(
+      'house-of-pataudi-sportsline',
+      '71ddda72-95b2-4d8f-ac4e-be2b3864d406-',
+      1,
+      40,
+      '.jpeg',
+      4,
+      'House of Pataudi Men\'s Sportsline image',
+      'cover'
+    ),
 
     process: {
       challenge:          'Creating a credible premium sportswear line embodying House of Pataudi\'s distinctive Indian heritage positioning while meeting modern performance and commercial expectations.',
@@ -188,7 +193,7 @@ const portfolioProjects = [
   {
     id:          'ms-womenswear-exports',
     title:       'Marks & Spencer — Woven Exports',
-    category:    'womenswear',
+    category:    'collage-works',
     subcategory: 'woven',
     brand:       'Marks & Spencer',
     season:      'SS24',
@@ -199,10 +204,17 @@ const portfolioProjects = [
 
     description: 'Designed woven shirts, tops and lightweight outerwear for Marks & Spencer export range — meeting international quality, fit and sustainability standards from moodboard to bulk approval.',
 
-    coverImage: '',
-    // coverImage: 'assets/images/portfolio/ms-womenswear-exports/cover.jpg',
-
-    images: [],
+    coverImage: assetPath('ms-womenswear-exports', 'cover.jpg.jpg'),
+    images: buildSequenceImages(
+      'ms-womenswear-exports',
+      'trend research_page-',
+      2,
+      26,
+      '.jpg',
+      4,
+      'Marks & Spencer woven exports trend research page',
+      'contain'
+    ),
 
     process: {
       challenge:          'Meeting M&S\'s rigorous international quality, fit and sustainability requirements while maintaining production feasibility and competitive cost.',
@@ -234,8 +246,17 @@ const portfolioProjects = [
 
     description: 'Seasonal womenswear range design for French Connection on Myntra — balancing the brand\'s distinctive graphic-led aesthetic with commercial relevance for the e-commerce platform.',
 
-    coverImage: '',
-    images: [],
+    coverImage: assetPath('french-connection-womenswear', 'COVER.JPG.jpg'),
+    images: buildSequenceImages(
+      'french-connection-womenswear',
+      '1786296953532-4ba561bc-88d9-4e1e-953d-d13621d745f1_',
+      5,
+      38,
+      '.jpg',
+      0,
+      'French Connection womenswear image',
+      'cover'
+    ),
 
     process: {
       challenge:          'Maintaining French Connection\'s bold brand personality while adapting to the commercial demands of a high-volume e-commerce catalogue.',
@@ -267,8 +288,17 @@ const portfolioProjects = [
 
     description: 'Menswear woven shirts and casual wear designed for Gap and Banana Republic — international quality and fit standards, with strong focus on fabric performance and commercial silhouettes.',
 
-    coverImage: '',
-    images: [],
+    coverImage: assetPath('gap-banana-republic-menswear', 'COVER.JPG.jpg'),
+    images: buildSequenceImages(
+      'gap-banana-republic-menswear',
+      'M&S Mens Shirt AW\'25_page-',
+      2,
+      25,
+      '.jpg',
+      4,
+      'Gap and Banana Republic menswear image',
+      'contain'
+    ),
 
     process: {
       challenge:          'Designing for two distinct brand positionings simultaneously — Gap\'s accessible American casual vs. Banana Republic\'s elevated aesthetic — within shared production.',
@@ -333,8 +363,17 @@ const portfolioProjects = [
 
     description: 'Woven tops and layering pieces for three American women\'s brands — premium detailing, fit precision and construction standards for the North American market.',
 
-    coverImage: '',
-    images: [],
+    coverImage: assetPath('ann-taylor-jjill-loft-women', 'COVER.JPG.jpg'),
+    images: buildSequenceImages(
+      'ann-taylor-jjill-loft-women',
+      '1786296953532-4ba561bc-88d9-4e1e-953d-d13621d745f1_',
+      40,
+      58,
+      '.jpg',
+      0,
+      'Ann Taylor, J.Jill and Loft womenswear image',
+      'cover'
+    ),
 
     process: {
       challenge:          'Meeting three distinct North American brand standards — Ann Taylor\'s polished workwear, J.Jill\'s relaxed premium, and Loft\'s accessible contemporary — in parallel.',
