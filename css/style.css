@@ -381,6 +381,38 @@ button {
   color: var(--white);
 }
 
+/* Improve nav readability over dark/red hero backgrounds before scroll */
+.nav:not(.nav--scrolled) .nav-logo {
+  color: rgba(255, 245, 230, 0.95);
+}
+
+.nav:not(.nav--scrolled) .nav-link {
+  color: rgba(255, 245, 230, 0.78);
+}
+
+.nav:not(.nav--scrolled) .nav-link:hover,
+.nav:not(.nav--scrolled) .nav-link.active {
+  color: rgba(255, 255, 255, 0.98);
+}
+
+.nav:not(.nav--scrolled) .nav-link::after {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.nav:not(.nav--scrolled) .nav-link--cta {
+  color: rgba(255, 245, 230, 0.95);
+  border-color: rgba(255, 245, 230, 0.6);
+}
+
+.nav:not(.nav--scrolled) .nav-link--cta:hover {
+  background: rgba(255, 245, 230, 0.95);
+  color: #6f0d12;
+}
+
+.nav:not(.nav--scrolled) .bar {
+  background: rgba(255, 245, 230, 0.95);
+}
+
 /* Mobile menu button */
 .nav-menu-btn {
   display: none;
@@ -1316,6 +1348,26 @@ button {
 
 .portfolio-card:nth-child(4n+1) {
   grid-column: span 2;
+}
+
+.portfolio-card--large {
+  grid-column: span 2;
+}
+
+.portfolio-card--large .card-img {
+  aspect-ratio: 16/9;
+}
+
+.portfolio-card--small .card-img {
+  aspect-ratio: 2/1;
+}
+
+.portfolio-card--small .card-info {
+  padding: 16px 18px 18px;
+}
+
+.portfolio-card--small .card-title {
+  font-size: 18px;
 }
 
 /* Card image area */
@@ -2482,8 +2534,25 @@ a.contact-val:hover {
     grid-column: span 1;
   }
 
+  .portfolio-card--large {
+    grid-column: span 1;
+  }
+
   .portfolio-card:nth-child(4n+1) .card-img {
     aspect-ratio: 3/2;
+  }
+
+  .portfolio-card--large .card-img,
+  .portfolio-card--small .card-img {
+    aspect-ratio: 3/2;
+  }
+
+  .portfolio-card--small .card-info {
+    padding: 20px 24px 24px;
+  }
+
+  .portfolio-card--small .card-title {
+    font-size: 20px;
   }
 
   .exp-item {

@@ -422,6 +422,9 @@
   function buildProjectCard(project, index) {
     const card = document.createElement('div');
     card.className = 'portfolio-card reveal-up';
+    if (project.cardSize === 'large' || project.cardSize === 'small') {
+      card.classList.add('portfolio-card--' + project.cardSize);
+    }
     card.style.setProperty('--delay', (index % 3 * 0.07) + 's');
     card.dataset.projectId = project.id;
 
@@ -632,13 +635,13 @@
     if (hasImages) {
       const slidesHtml = media.map(function (img, i) {
         if (img.type === 'pdf') {
-          return '<button class="gallery-slide gallery-slide--pdf" type="button" data-lightbox data-media-index="' + i + '">' +
+          return '<a class="gallery-slide gallery-slide--pdf" href="' + sanitiseAttr(img.src) + '#toolbar=1&navpanes=0&view=FitH" target="_blank" rel="noopener noreferrer" aria-label="Open PDF in new tab: ' + sanitiseAttr(img.alt || project.title) + '">' +
             '<div class="gallery-pdf-preview">' +
               '<span class="gallery-pdf-icon">PDF</span>' +
               '<span class="gallery-pdf-name">' + sanitise(img.alt || project.title) + '</span>' +
               '<span class="gallery-pdf-hint">Click to open (may take a few minutes to load)</span>' +
             '</div>' +
-          '</button>';
+          '</a>';
         }
 
         return '<button class="gallery-slide" type="button" data-lightbox data-media-index="' + i + '">' +
