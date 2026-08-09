@@ -1,175 +1,109 @@
-# Vaishaly S — Portfolio Website
-## Step-by-step guide (no technical knowledge needed)
+# Vaishaly S - Portfolio Website
 
----
+This file is the quick operating guide for the current portfolio version.
 
-## QUICK REFERENCE — Where each file goes
+## Current status
 
-| What | Folder | File name to use |
-|---|---|---|
-| Hero background image | `assets/images/hero/` | `hero.jpg` |
-| Your portrait photo | `assets/images/about/` | `portrait.jpg` |
-| Your resume PDF | `assets/` | `resume.pdf` |
-| Project images | `assets/images/portfolio/<project-folder>/` | any name |
+- Resume download is enabled.
+- Resume file path is `assets/resume.pdf`.
+- Portfolio categories are:
+  - Womenswear
+  - Menswear
+  - Kidswear
+  - Graphic / Print
+  - Tech Packs
+  - College Works
+- College Works currently contains only:
+  - Graduation Project
+  - Lakme Fashion Week
+- Print Portfolio - Graphic is under Graphic / Print.
 
----
+## Key files to edit
 
-## HOW TO ADD YOUR RESUME PDF
+- `index.html`: section structure and static text.
+- `js/data.js`: portfolio data, experience, categories, contact info.
+- `js/main.js`: rendering logic, modal, gallery, PDF open behavior.
+- `css/style.css`: visual styles.
 
-This is the most important step — the Download Resume button will not work until you do this.
+## Resume setup
 
-**Step 1** — Find your resume file on your computer (it must be a PDF).
+The site currently uses:
 
-**Step 2** — Rename it to exactly: `resume.pdf`
-- Right-click the file → Rename → type `resume.pdf` → press Enter.
+- Download button -> `assets/resume.pdf`
+- View button -> `assets/resume.pdf`
 
-**Step 3** — Copy it into this folder:
-```
-C:\Users\rh2\vaishaly-portfolio\assets\
-```
-You will see a file called `PLACE_RESUME_HERE.txt` there — that is just a marker. Paste your `resume.pdf` next to it.
+To replace resume:
 
-**Step 4** — Open `index.html` in Notepad (right-click → Open with → Notepad).
+1. Keep your new file as PDF.
+2. Rename it to `resume.pdf`.
+3. Replace `assets/resume.pdf`.
+4. Refresh browser.
 
-**Step 5** — Press Ctrl+F and search for:
-```
-Resume upload coming soon
-```
+## PDF project behavior
 
-**Step 6** — You will see a block. Replace this entire section:
-```html
-<p style="...">Resume upload coming soon</p>
-```
-With these two lines:
-```html
-<a href="assets/resume.pdf" download="Vaishaly_S_Resume.pdf" class="btn btn--primary">Download Resume</a>
-<a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">View Resume</a>
-```
+- PDF projects open from project modal preview.
+- The website does not intentionally navigate away from portfolio page.
+- If browser popup is blocked, user may see a popup warning.
+- A message is shown in UI: PDF may take a few minutes to load completely.
 
-**Step 7** — Save the file (Ctrl+S). Refresh browser (F5). The buttons will now work.
+## Update About / Experience content
 
----
+### About intro
 
-## HOW TO ADD YOUR HERO BACKGROUND IMAGE
+Edit the About paragraph directly in `index.html` under the About section.
 
-**Step 1** — Choose a fashion photo (lookbook, flat-lay, editorial style — landscape/wide works best).
+### Experience entries and brand lists
 
-**Step 2** — Rename the file to exactly: `hero.jpg`
+Edit in `js/data.js` -> `const experienceItems = [...]`
 
-**Step 3** — Copy it into:
-```
-C:\Users\rh2\vaishaly-portfolio\assets\images\hero\
-```
+For Myntra brand tags, update the `brands` array in the first experience object.
 
-**Step 4** — Refresh browser (F5). The background image will appear.
+## Add or edit portfolio projects
 
-Recommended size: 1920×1080 pixels or larger.
+Edit in `js/data.js` -> `const portfolioProjects = [...]`
 
----
+Each project supports:
 
-## HOW TO ADD YOUR PORTRAIT PHOTO
+- `coverImage`
+- `images` for image gallery
+- `documents` for PDF items
+- `category` for tab mapping
 
-**Step 1** — Choose a clear professional photo of yourself.
+Project media is located in:
 
-**Step 2** — Rename it to exactly: `portrait.jpg`
+- `assets/images/portfolio/<project-folder>/`
 
-**Step 3** — Copy it into:
-```
-C:\Users\rh2\vaishaly-portfolio\assets\images\about\
-```
+## Local preview
 
-**Step 4** — Refresh browser (F5). Your photo will appear in the About section.
+1. Open project folder.
+2. Open `index.html` in browser.
+3. Refresh after edits.
 
-Recommended size: 800×1000 pixels (portrait/vertical).
+## Publish to GitHub Pages
 
----
+After local validation:
 
-## HOW TO ADD PROJECT IMAGES
+1. Commit changes.
+2. Push to `main`.
+3. Wait for GitHub Pages deployment.
 
-Each project has its own folder. Drop images into the right folder and the slideshow will show them.
+Live URL:
 
-**Step 1** — Open:
-```
-C:\Users\rh2\vaishaly-portfolio\assets\images\portfolio\
-```
+- https://svaishaly1.github.io/
 
-**Step 2** — Open the project folder you want to update. Current folders:
+## Troubleshooting
 
-| Project | Folder name |
-|---|---|
-| Nautica Kidswear | `nautica-kidswear-ss25` |
-| House of Pataudi Sportsline | `house-of-pataudi-sportsline` |
-| Marks & Spencer Exports | `ms-womenswear-exports` |
-| French Connection Womenswear | `french-connection-womenswear` |
-| Gap & Banana Republic Menswear | `gap-banana-republic-menswear` |
-| YK & Sangria Kidswear | `yk-sangria-kidswear` |
-| Ann Taylor / J.Jill / Loft | `ann-taylor-jjill-loft-women` |
+### Resume button not working
 
-**Step 3** — Copy your images into that folder. You can add as many as you like (3–10 is ideal).
+- Confirm file exists at `assets/resume.pdf`.
+- Hard refresh browser (Ctrl+F5).
 
-**Step 4** — To register a new cover image or new gallery images, open:
-```
-C:\Users\rh2\vaishaly-portfolio\js\data.js
-```
-in Notepad, find the project by name, and update the `coverImage` or `images` array.
+### PDF does not open
 
----
+- Allow popups for the site/browser tab.
+- Try clicking again from project modal.
 
-## CURRENT PORTFOLIO TABS
+### Images not visible
 
-- 01 — Womenswear
-- 02 — Menswear
-- 03 — Kidswear
-- 04 — Graphic / Print
-- 05 — Tech Packs
-- 06 — Collage Works
-
----
-
-## HOW TO EDIT YOUR NAME, EMAIL OR PHONE
-
-**Step 1** — Open `js/data.js` in Notepad.
-
-**Step 2** — At the very top, find:
-```
-const siteConfig = {
-  name:     'Vaishaly S',
-  email:    'svaishaly.1@gmail.com',
-  phone:    '+91 7397310071',
-```
-
-**Step 3** — Change any value inside the single quotes.
-
-**Step 4** — Save (Ctrl+S) and refresh browser (F5).
-
----
-
-## HOW TO PREVIEW THE SITE
-
-1. Open `C:\Users\rh2\vaishaly-portfolio`
-2. Double-click `index.html`
-3. It opens in your browser — that is your website.
-4. After any edit, press **F5** to refresh.
-
----
-
-## LIVE WEBSITE (GITHUB PAGES)
-
-URL: https://svaishaly1.github.io/
-
-After making changes locally, the files need to be pushed to GitHub for the live site to update. Ask for help with this step when ready.
-
----
-
-## TROUBLESHOOTING
-
-**Download Resume button not working**
-→ You have not placed `resume.pdf` in the `assets/` folder yet. Follow the "HOW TO ADD YOUR RESUME PDF" steps above.
-
-**Image is not showing**
-→ Check the file name is spelled exactly right, including `.jpg` at the end.
-→ Make sure the file is in the correct folder.
-→ Press Ctrl+F5 (hard refresh) in the browser.
-
-**Site looks old after edits**
-→ Press Ctrl+F5 instead of just F5.
+- Confirm exact file path and extension.
+- Confirm project object points to correct media path in `js/data.js`.

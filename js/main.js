@@ -426,11 +426,18 @@
     card.dataset.projectId = project.id;
 
     const hasImage = project.coverImage && project.coverImage.trim() !== '';
+    const hasDocuments = (project.documents || []).length > 0;
     const isFeatured = project.featured;
 
     /* Image / placeholder */
     const imgHtml = hasImage
       ? '<img src="' + sanitiseAttr(project.coverImage) + '" alt="' + sanitiseAttr(project.title) + '" loading="lazy">'
+      : hasDocuments
+      ? '<div class="card-pdf">' +
+          '<span class="card-pdf-kicker">Document Project</span>' +
+          '<span class="card-pdf-title">' + sanitise(project.title) + '</span>' +
+          '<span class="card-pdf-cta">Click to preview</span>' +
+        '</div>'
       : '<div class="card-ph">' +
           '<span class="card-ph-label">' + sanitise(project.title) + '</span>' +
           '<span class="card-ph-sub">Add image: assets/images/portfolio/' + sanitise(project.id) + '/cover.jpg</span>' +
@@ -483,6 +490,7 @@
         src: project.coverImage,
         alt: project.title,
         fit: 'cover',
+        type: 'image',
       });
     }
 
@@ -491,10 +499,27 @@
         src: image.src,
         alt: image.alt || project.title,
         fit: image.fit || 'cover',
+        type: detectMediaType(image),
+      });
+    });
+
+    (project.documents || []).forEach(function (doc) {
+      media.push({
+        src: doc.src,
+        alt: doc.alt || project.title,
+        fit: doc.fit || 'contain',
+        type: detectMediaType(doc),
       });
     });
 
     return media;
+  }
+
+  function detectMediaType(item) {
+    if (!item) return 'image';
+    if (item.type) return item.type;
+    const source = String(item.src || '').toLowerCase();
+    return source.endsWith('.pdf') ? 'pdf' : 'image';
   }
 
 
@@ -527,15 +552,17 @@
 
     modalBody.innerHTML = buildModalContent(project);
     initProjectGallery(modalBody);
+    primePdfDocuments(project);
 
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
 
     // Bind image clicks → lightbox
-    modalBody.querySelectorAll('[data-lightbox]').forEach(function (img, i) {
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', function () { openLightbox(project, i); });
+    modalBody.querySelectorAll('[data-lightbox]').forEach(function (node, i) {
+      const mediaIndex = parseInt(node.getAttribute('data-media-index') || i, 10);
+      node.style.cursor = 'zoom-in';
+      node.addEventListener('click', function () { openLightbox(project, mediaIndex); });
     });
 
     // Escape key
@@ -573,6 +600,7 @@
     const media = getProjectMedia(project);
     const hasImages = media.length > 0;
     const hasCover  = project.coverImage && project.coverImage.trim() !== '';
+    const isDocumentOnly = !hasCover && (project.documents || []).length > 0;
 
     /* Tags row */
     const tagsHtml =
@@ -585,7 +613,13 @@
 
     /* Cover */
     const coverHtml = hasCover
-      ? '<div class="proj-cover"><img src="' + sanitiseAttr(project.coverImage) + '" alt="' + sanitiseAttr(project.title) + '" data-lightbox loading="lazy"></div>'
+      ? '<div class="proj-cover"><img src="' + sanitiseAttr(project.coverImage) + '" alt="' + sanitiseAttr(project.title) + '" data-lightbox data-media-index="0" loading="lazy"></div>'
+      : isDocumentOnly
+      ? '<div class="proj-doc-hero">' +
+          '<span class="proj-doc-kicker">Document Preview</span>' +
+          '<h3 class="proj-doc-title">' + sanitise(project.title) + '</h3>' +
+          '<p class="proj-doc-note">Open the document below to launch it in full screen. PDF files may take a few minutes to load completely.</p>' +
+        '</div>'
       : '<div class="proj-cover"><div class="img-placeholder img-placeholder--modal" style="min-height:320px">' +
           '<div class="ph-inner"><div class="ph-icon">◻</div><p>' + sanitise(project.title) + '</p>' +
           '<small>Add: assets/images/portfolio/' + sanitise(project.id) + '/cover.jpg</small></div></div></div>';
@@ -597,13 +631,29 @@
     let galleryHtml = '';
     if (hasImages) {
       const slidesHtml = media.map(function (img, i) {
-        return '<button class="gallery-slide" type="button" data-lightbox data-index="' + i + '">' +
+        if (img.type === 'pdf') {
+          return '<button class="gallery-slide gallery-slide--pdf" type="button" data-lightbox data-media-index="' + i + '">' +
+            '<div class="gallery-pdf-preview">' +
+              '<span class="gallery-pdf-icon">PDF</span>' +
+              '<span class="gallery-pdf-name">' + sanitise(img.alt || project.title) + '</span>' +
+              '<span class="gallery-pdf-hint">Click to open (may take a few minutes to load)</span>' +
+            '</div>' +
+          '</button>';
+        }
+
+        return '<button class="gallery-slide" type="button" data-lightbox data-media-index="' + i + '">' +
           '<img src="' + sanitiseAttr(img.src) + '" alt="' + sanitiseAttr(img.alt || project.title) + '" ' +
           'style="object-fit:' + sanitiseAttr(img.fit || 'cover') + '" loading="lazy">' +
         '</button>';
       }).join('');
 
       const thumbsHtml = media.map(function (img, i) {
+        if (img.type === 'pdf') {
+          return '<button class="gallery-thumb gallery-thumb--pdf" type="button" data-thumb-index="' + i + '">' +
+            '<span>PDF</span>' +
+          '</button>';
+        }
+
         return '<button class="gallery-thumb" type="button" data-thumb-index="' + i + '">' +
           '<img src="' + sanitiseAttr(img.src) + '" alt="' + sanitiseAttr(img.alt || project.title) + '" ' +
           'style="object-fit:' + sanitiseAttr(img.fit || 'cover') + '" loading="lazy">' +
@@ -762,8 +812,17 @@
 
     if (imgs.length === 0) return;
 
+    const resolvedIndex = Math.min(startIndex, imgs.length - 1);
+    const startItem = imgs[resolvedIndex];
+
+    // PDFs open faster in a dedicated browser tab than in an embedded iframe.
+    if (startItem.type === 'pdf') {
+      openPdfInNewTab(startItem.src);
+      return;
+    }
+
     lbImages = imgs;
-    lbIndex  = Math.min(startIndex, imgs.length - 1);
+    lbIndex  = resolvedIndex;
 
     showLightboxImage(lbIndex);
 
@@ -781,16 +840,28 @@
 
   function showLightboxImage(index) {
     const img     = document.getElementById('lbImg');
+    const pdf     = document.getElementById('lbPdf');
     const caption = document.getElementById('lbCaption');
     const counter = document.getElementById('lbCounter');
     const prev    = document.getElementById('lbPrev');
     const next    = document.getElementById('lbNext');
 
-    if (!img) return;
+    if (!img || !pdf) return;
 
     const item = lbImages[index];
-    img.src = item.src;
-    img.alt = item.alt || '';
+    if (item.type === 'pdf') {
+      pdf.src = encodeURI(item.src) + '#toolbar=1&navpanes=0&view=FitH';
+      pdf.style.display = 'block';
+      img.style.display = 'none';
+      img.src = '';
+      img.alt = '';
+    } else {
+      img.src = item.src;
+      img.alt = item.alt || '';
+      img.style.display = 'block';
+      pdf.style.display = 'none';
+      pdf.src = '';
+    }
 
     if (caption) caption.textContent = item.alt || '';
     if (counter) counter.textContent = lbImages.length > 1 ? (index + 1) + ' / ' + lbImages.length : '';
@@ -807,16 +878,67 @@
 
   function closeLightbox() {
     const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lbImg');
+    const pdf = document.getElementById('lbPdf');
     if (!lb) return;
 
     lb.classList.remove('is-open');
     lb.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lightbox-open');
 
+    if (img) {
+      img.src = '';
+      img.alt = '';
+      img.style.display = 'block';
+    }
+    if (pdf) {
+      pdf.src = '';
+      pdf.style.display = 'none';
+    }
+
     if (lbEscKey) {
       document.removeEventListener('keydown', lbEscKey);
       lbEscKey = null;
     }
+  }
+
+  function openPdfInNewTab(src) {
+    if (!src) return;
+    const pdfUrl = encodeURI(src) + '#toolbar=1&navpanes=0&view=FitH';
+    const opened = window.open(pdfUrl, '_blank', 'noopener,noreferrer');
+
+    if (opened) return;
+
+    // Secondary attempt that still keeps the portfolio page in place.
+    const anchor = document.createElement('a');
+    anchor.href = pdfUrl;
+    anchor.target = '_blank';
+    anchor.rel = 'noopener noreferrer';
+    anchor.style.display = 'none';
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+
+    // If browser policies still block new tabs, do not replace the current page.
+    setTimeout(function () {
+      if (!document.hasFocus()) return;
+      alert('Popup blocked. Please allow popups for this page to open the PDF in a new tab.');
+    }, 50);
+  }
+
+  function primePdfDocuments(project) {
+    const docs = (project && project.documents) ? project.documents : [];
+    if (!docs.length) return;
+
+    docs.forEach(function (doc) {
+      if (!doc || !doc.src) return;
+
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'document';
+      link.href = encodeURI(doc.src);
+      document.head.appendChild(link);
+    });
   }
 
 

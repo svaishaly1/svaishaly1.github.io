@@ -67,7 +67,11 @@ function assetPath(folder, fileName) {
 }
 
 function imageItem(src, alt, fit) {
-  return { src: src, alt: alt, fit: fit || 'cover' };
+  return { src: src, alt: alt, fit: fit || 'cover', type: 'image' };
+}
+
+function pdfItem(src, alt) {
+  return { src: src, alt: alt || 'PDF document', fit: 'contain', type: 'pdf' };
 }
 
 function buildSequenceImages(folder, prefix, start, end, suffix, pad, altPrefix, fit) {
@@ -92,7 +96,7 @@ const portfolioCategories = [
   { id: 'kidswear',      label: '03 — Kidswear' },
   { id: 'graphic-print', label: '04 — Graphic / Print' },
   { id: 'tech-packs',    label: '05 — Tech Packs' },
-  { id: 'collage-works', label: '06 — Collage Works' },
+  { id: 'college-works', label: '06 — College Works' },
 ];
 
 
@@ -101,290 +105,360 @@ const portfolioCategories = [
    Each object = one project card + case study.
    ============================================================ */
 const portfolioProjects = [
-
-  /* ----------------------------------------------------------
-     PROJECT 1 — Myntra · Kidswear · Nautica
-  ---------------------------------------------------------- */
   {
-    id:          'nautica-kidswear-ss25',
-    title:       'Nautica Kidswear',
-    category:    'kidswear',        // must match a portfolioCategories id
+    id: 'ms-t-41-ss25',
+    title: 'M&S T-41 (SS 25)',
+    category: 'womenswear',
     subcategory: 'casualwear',
-    brand:       'Nautica',
-    season:      'SS25',
-    year:        '2025',
-    role:        'Design Associate',
-    company:     'Myntra',
-    featured:    true,              // show in featured section on homepage
-
-    description: 'End-to-end design development for the Nautica Kidswear seasonal range at Myntra — from trend research and moodboards through technical design, fit, vendor coordination and marketplace launch.',
-
-    /*
-     * IMAGES
-     * coverImage — shown on the portfolio card and at the top of the case study
-     * images     — shown in the gallery inside the case study
-     *
-     * To add images:
-     *   1. Drop files into: assets/images/portfolio/nautica-kidswear-ss25/
-     *   2. Update the paths below
-     *   3. Set fit: 'contain' for flat sketches; 'cover' for photography
-     */
-    coverImage: '',
-    images: [],
-
-    process: {
-      challenge:          'Delivering a commercially strong seasonal range for a premium international kidswear brand within fast-paced e-commerce timelines.',
-      research:           'Analysed SS25 global kidswear trends, Nautica brand identity pillars, and Myntra consumer segment data to identify key design opportunities.',
-      designDirection:    'Developed a nautical-inspired, bold-and-clean direction aligned with Nautica brand codes — accessible, confident, commercial.',
-      development:        'Executed fabric and trim selection across tops, bottoms and outerwear; balanced design aspiration against cost and speed targets.',
-      technicalExecution: 'Created comprehensive tech packs per style, managed fit sessions across size range, coordinated with vendors for sample approvals.',
-      outcome:            'Seasonal range launched successfully on Myntra marketplace on schedule, contributing to overall Kidswear category growth.',
-    },
-
-    tags: ['kidswear', 'casualwear', 'woven', 'e-commerce', 'range-planning'],
+    brand: 'Marks & Spencer',
+    season: 'SS25',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: true,
+    description: 'Developed an SS\'25 casualwear capsule collection for Marks & Spencer, focusing on effortless, versatile styles designed for modern everyday dressing. The collection combined relaxed silhouettes with fresh seasonal colours, lightweight fabrics, contemporary details and subtle trend influences, balancing M&S\'s timeless aesthetic with a modern, commercially relevant approach.',
+    coverImage: assetPath('M&S T-41 (SS 25)', 'COVER.JPG.jpg'),
+    images: buildSequenceImages('M&S T-41 (SS 25)', '1786296953532-4ba561bc-88d9-4e1e-953d-d13621d745f1_', 5, 38, '.jpg', 0, 'M&S T-41 SS25', 'cover'),
+    tags: ['womenswear', 'casualwear', 'capsule', 'marks-spencer'],
   },
-
-
-  /* ----------------------------------------------------------
-     PROJECT 2 — Myntra · Menswear · House of Pataudi Sportsline
-  ---------------------------------------------------------- */
   {
-    id:          'house-of-pataudi-sportsline',
-    title:       'House of Pataudi — Men\'s Sportsline',
-    category:    'tech-packs',
-    subcategory: 'sportswear',
-    brand:       'House of Pataudi',
-    season:      'AW24',
-    year:        '2024',
-    role:        'Design Associate',
-    company:     'Myntra',
-    featured:    true,
-
-    description: 'Managed the complete product lifecycle for House of Pataudi Men\'s Sportsline — from initial concept and trend research through tech packs, fit approvals, vendor coordination and market launch.',
-
-    coverImage: assetPath('house-of-pataudi-sportsline', 'COVER.JPG.jpeg'),
-    images: buildSequenceImages(
-      'house-of-pataudi-sportsline',
-      '71ddda72-95b2-4d8f-ac4e-be2b3864d406-',
-      1,
-      40,
-      '.jpeg',
-      4,
-      'House of Pataudi Men\'s Sportsline image',
-      'cover'
-    ),
-
-    process: {
-      challenge:          'Creating a credible premium sportswear line embodying House of Pataudi\'s distinctive Indian heritage positioning while meeting modern performance and commercial expectations.',
-      research:           'Researched premium sportswear market dynamics, active lifestyle consumer behaviour, and heritage sportswear aesthetic references for direction-setting.',
-      designDirection:    'Developed a direction blending contemporary sportswear construction with subtle heritage detailing — performance-led but elevated in positioning.',
-      development:        'Sourced technical performance fabrics and premium trim; developed construction specifications suited to active-wear end use.',
-      technicalExecution: 'Built full tech pack suite for the Sportsline including detailed measurements, construction specs, stitch types, label placements and fit comments per style.',
-      outcome:            'Successful market launch of House of Pataudi Men\'s Sportsline on Myntra.',
-    },
-
-    tags: ['menswear', 'sportswear', 'performance', 'premium', 'tech-packs'],
+    id: 'ms-t-43-edit-aw25',
+    title: 'M&S T-43-EDIT (AW 25)',
+    category: 'womenswear',
+    subcategory: 'partywear',
+    brand: 'Marks & Spencer',
+    season: 'AW25',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: true,
+    description: 'Developed the AW\'25 T-43 Edit, a casual partywear collection for Marks & Spencer, blending elevated occasion dressing with effortless, contemporary styling. The collection explored refined silhouettes, subtle statement details, seasonal colours, textures and versatile styling elements to create pieces that transition seamlessly from casual gatherings to party occasions, while maintaining M&S\'s polished and wearable aesthetic.',
+    coverImage: assetPath('M&S T-43-EDIT (AW 25)', 'COVER.JPG.jpg'),
+    images: buildSequenceImages('M&S T-43-EDIT (AW 25)', '1786296953532-4ba561bc-88d9-4e1e-953d-d13621d745f1_', 40, 58, '.jpg', 0, 'M&S T-43 Edit AW25', 'cover'),
+    tags: ['womenswear', 'partywear', 'aw25', 'marks-spencer'],
   },
-
-
-  /* ----------------------------------------------------------
-     PROJECT 3 — Ambattur · Womenswear Exports · Marks & Spencer
-  ---------------------------------------------------------- */
   {
-    id:          'ms-womenswear-exports',
-    title:       'Marks & Spencer — Woven Exports',
-    category:    'collage-works',
-    subcategory: 'woven',
-    brand:       'Marks & Spencer',
-    season:      'SS24',
-    year:        '2024',
-    role:        'Fashion Designer – Exports',
-    company:     'Ambattur Clothing Ltd.',
-    featured:    true,
-
-    description: 'Designed woven shirts, tops and lightweight outerwear for Marks & Spencer export range — meeting international quality, fit and sustainability standards from moodboard to bulk approval.',
-
-    coverImage: assetPath('ms-womenswear-exports', 'cover.jpg.jpg'),
-    images: buildSequenceImages(
-      'ms-womenswear-exports',
-      'trend research_page-',
-      2,
-      26,
-      '.jpg',
-      4,
-      'Marks & Spencer woven exports trend research page',
-      'contain'
-    ),
-
-    process: {
-      challenge:          'Meeting M&S\'s rigorous international quality, fit and sustainability requirements while maintaining production feasibility and competitive cost.',
-      research:           'Reviewed M&S seasonal trend direction, brand quality standards documentation, and target customer profile for the range.',
-      designDirection:    'Developed commercially strong woven silhouettes — clean, wearable, aligned with M&S core customer expectations.',
-      development:        'Fabric and trim sourcing with sustainability compliance, construction planning, and costing to international price points.',
-      technicalExecution: 'Created complete tech packs, conducted fit sessions, managed correction rounds and bulk approval sign-off process.',
-      outcome:            'Range approved to M&S international quality standards and moved to bulk production.',
-    },
-
-    tags: ['womenswear', 'woven', 'exports', 'international', 'shirts', 'tops'],
+    id: 'ms-t-43-edit-ss25',
+    title: 'M&S T-43-EDIT (SS 25)',
+    category: 'womenswear',
+    subcategory: 'partywear',
+    brand: 'Marks & Spencer',
+    season: 'SS25',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: true,
+    description: 'Developed the SS\'25 T-43 Edit, a casual partywear collection for Marks & Spencer, focused on creating elevated yet versatile looks for modern social occasions. The collection combined contemporary silhouettes with seasonal colours, refined details, subtle surface interest and lightweight fabrications, balancing occasion appeal with effortless wearability and M&S\'s sophisticated aesthetic.',
+    coverImage: assetPath('M&S T-43-EDIT (SS 25)', 'cover.jpg.jpg'),
+    images: buildSequenceImages('M&S T-43-EDIT (SS 25)', 'trend research_page-', 2, 26, '.jpg', 4, 'M&S T-43 Edit SS25', 'contain'),
+    tags: ['womenswear', 'partywear', 'ss25', 'marks-spencer'],
   },
-
-
-  /* ----------------------------------------------------------
-     PROJECT 4 — Myntra · Womenswear · French Connection
-  ---------------------------------------------------------- */
   {
-    id:          'french-connection-womenswear',
-    title:       'French Connection — Womenswear',
-    category:    'womenswear',
-    subcategory: 'casualwear',
-    brand:       'French Connection',
-    season:      'SS25',
-    year:        '2025',
-    role:        'Design Associate',
-    company:     'Myntra',
-    featured:    false,
-
-    description: 'Seasonal womenswear range design for French Connection on Myntra — balancing the brand\'s distinctive graphic-led aesthetic with commercial relevance for the e-commerce platform.',
-
-    coverImage: assetPath('french-connection-womenswear', 'COVER.JPG.jpg'),
-    images: buildSequenceImages(
-      'french-connection-womenswear',
-      '1786296953532-4ba561bc-88d9-4e1e-953d-d13621d745f1_',
-      5,
-      38,
-      '.jpg',
-      0,
-      'French Connection womenswear image',
-      'cover'
-    ),
-
-    process: {
-      challenge:          'Maintaining French Connection\'s bold brand personality while adapting to the commercial demands of a high-volume e-commerce catalogue.',
-      research:           'Brand audit, seasonal trend direction, and Myntra consumer data review for womenswear positioning.',
-      designDirection:    'On-brand seasonal range with commercial silhouettes, strong print and graphic direction.',
-      development:        'Range planning, fabric and trim sourcing, print development coordination.',
-      technicalExecution: 'Tech pack creation and sample approval process per style.',
-      outcome:            'Seasonal range launched on Myntra marketplace.',
-    },
-
-    tags: ['womenswear', 'casualwear', 'e-commerce', 'prints', 'brand-adaptation'],
+    id: 'aw24-jacket-rendered-sketches',
+    title: 'AW\'24 Jacket Collection – Rendered Sketches',
+    category: 'womenswear',
+    subcategory: 'outerwear',
+    brand: 'Concept Project',
+    season: 'AW24',
+    year: '2024',
+    role: 'Apparel Designer',
+    company: 'Independent',
+    featured: false,
+    description: 'A conceptual AW\'24 jacket collection developed through rendered sketches, exploring contemporary outerwear silhouettes, seasonal fabrications, layering and functional detailing. The collection focuses on balancing statement design with practical winter dressing, incorporating varied proportions, textures, colours and construction details to create a versatile and modern outerwear offering.',
+    coverImage: assetPath('AW’24 Jacket Collection – Rendered Sketches', 'COVER.JPG.jpg'),
+    images: buildSequenceImages('AW’24 Jacket Collection – Rendered Sketches', '1786299855343-727a2482-7cdc-4e54-8b36-dcf0b51478d8_', 2, 24, '.jpg', 0, 'AW24 Jacket Collection', 'cover'),
+    tags: ['womenswear', 'outerwear', 'rendered-sketches'],
   },
-
-
-  /* ----------------------------------------------------------
-     PROJECT 5 — Ambattur · Menswear Exports · Gap / Banana Republic
-  ---------------------------------------------------------- */
   {
-    id:          'gap-banana-republic-menswear',
-    title:       'Gap & Banana Republic — Menswear Exports',
-    category:    'menswear',
+    id: 'chicos-frontline-collection',
+    title: 'Chicos – Frontline Collection',
+    category: 'womenswear',
+    subcategory: 'premium-casual',
+    brand: 'Chicos',
+    season: 'Seasonal',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Exports',
+    featured: false,
+    description: 'Developed a contemporary collection for Chicos\' Frontline business, focusing on elevated, fashion-forward styles suited to the brand\'s core customer. The range balanced refined silhouettes, premium-looking fabrics, sophisticated colour palettes and considered detailing, with a strong focus on quality, design appeal and commercial relevance at a higher price point.',
+    coverImage: assetPath('Chicos – Frontline Collection', 'cover.jpg'),
+    images: buildSequenceImages('Chicos – Frontline Collection', 'women\'s wearpdf_page-', 2, 25, '.jpg', 4, 'Chicos Frontline', 'contain'),
+    tags: ['womenswear', 'frontline', 'premium', 'exports'],
+  },
+  {
+    id: 'chicos-outlet-collection',
+    title: 'Chicos – Outlet Collection',
+    category: 'womenswear',
+    subcategory: 'commercial-casual',
+    brand: 'Chicos',
+    season: 'Seasonal',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Exports',
+    featured: false,
+    description: 'Developed a commercially driven collection for Chicos\' Outlet business, adapting the brand aesthetic to a more accessible price point. The range focused on versatile, wearable styles with simplified constructions, cost-conscious fabric and trim selections, and efficient design details while maintaining the brand\'s recognizable identity and strong visual appeal.',
+    coverImage: assetPath('Chicos – Outlet Collection', 'cover.jpg'),
+    images: buildSequenceImages('Chicos – Outlet Collection', 'Women\'s bottom_page-', 2, 29, '.jpg', 4, 'Chicos Outlet', 'contain'),
+    tags: ['womenswear', 'outlet', 'commercial', 'exports'],
+  },
+  {
+    id: 'loft-swim-cover-up-collection',
+    title: 'LOFT – Swim Cover-Up Collection',
+    category: 'womenswear',
+    subcategory: 'resortwear',
+    brand: 'LOFT',
+    season: 'Summer',
+    year: '2024',
+    role: 'Apparel Designer',
+    company: 'Exports',
+    featured: false,
+    description: 'Developed a swim cover-up collection for LOFT, blending effortless resort dressing with contemporary, feminine styling. The collection explored lightweight fabrics, relaxed silhouettes, versatile layering pieces and seasonal prints, designed to transition seamlessly from beachwear to casual summer dressing while maintaining LOFT\'s polished and approachable aesthetic.',
+    coverImage: assetPath('LOFT – Swim Cover-Up Collection', 'COVER.JPG.jpg'),
+    images: buildSequenceImages('LOFT – Swim Cover-Up Collection', 'SWIMCOVER UP_page-', 2, 19, '.jpg', 4, 'LOFT Swim Cover-Up', 'contain'),
+    tags: ['womenswear', 'resortwear', 'cover-up', 'exports'],
+  },
+  {
+    id: 'marks-spencer-shirts-aw25',
+    title: 'Marks & Spencer –Shirts (AW 25)',
+    category: 'menswear',
     subcategory: 'shirts',
-    brand:       'Gap / Banana Republic',
-    season:      'SS23',
-    year:        '2023',
-    role:        'Fashion Designer – Exports',
-    company:     'Ambattur Clothing Ltd.',
-    featured:    false,
-
-    description: 'Menswear woven shirts and casual wear designed for Gap and Banana Republic — international quality and fit standards, with strong focus on fabric performance and commercial silhouettes.',
-
-    coverImage: assetPath('gap-banana-republic-menswear', 'COVER.JPG.jpg'),
-    images: buildSequenceImages(
-      'gap-banana-republic-menswear',
-      'M&S Mens Shirt AW\'25_page-',
-      2,
-      25,
-      '.jpg',
-      4,
-      'Gap and Banana Republic menswear image',
-      'contain'
-    ),
-
-    process: {
-      challenge:          'Designing for two distinct brand positionings simultaneously — Gap\'s accessible American casual vs. Banana Republic\'s elevated aesthetic — within shared production.',
-      research:           'Reviewed both brand guidelines, seasonal reporting, and men\'s shirting market direction for the relevant seasons.',
-      designDirection:    'Distinct design approaches per brand with shared production efficiency; menswear silhouettes calibrated for each brand\'s fit standard.',
-      development:        'Woven shirt construction, fabric sourcing, trim selection and costing per brand.',
-      technicalExecution: 'Full tech packs, multiple fit correction rounds and bulk approval coordination.',
-      outcome:            'Export collections approved and moved to bulk production for both brands.',
-    },
-
-    tags: ['menswear', 'shirts', 'woven', 'exports', 'international', 'casualwear'],
+    brand: 'Marks & Spencer',
+    season: 'AW25',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: true,
+    description: 'Developed the AW\'25 range plan for Marks & Spencer, translating seasonal trends and market insights into a commercially relevant product assortment. The range balanced M&S\'s core aesthetic of timeless, quality-led fashion with contemporary silhouettes, textures, colours and key seasonal trends. Focused on creating a cohesive product mix across categories, ensuring the right balance of core, fashion and statement pieces while considering customer relevance, commerciality and seasonal opportunities.',
+    coverImage: assetPath('Marks & Spencer –Shirts (AW 25)', 'COVER.JPG.jpg'),
+    images: buildSequenceImages('Marks & Spencer –Shirts (AW 25)', 'M&S Mens Shirt AW\'25_page-', 2, 25, '.jpg', 4, 'M&S Mens Shirts AW25', 'contain'),
+    tags: ['menswear', 'shirts', 'range-plan', 'aw25'],
   },
-
-
-  /* ----------------------------------------------------------
-     PROJECT 6 — Myntra · Kidswear · YK & Sangria
-  ---------------------------------------------------------- */
   {
-    id:          'yk-sangria-kidswear',
-    title:       'YK & Sangria — Kids Collections',
-    category:    'kidswear',
-    subcategory: 'casualwear',
-    brand:       'YK / Sangria',
-    season:      'AW25',
-    year:        '2025',
-    role:        'Design Associate',
-    company:     'Myntra',
-    featured:    false,
-
-    description: 'Simultaneous multi-brand kidswear range design across YK and Sangria labels — separate brand aesthetics and consumer positioning managed within shared production timelines.',
-
+    id: 'white-stuff-shirts-aw25',
+    title: 'White Stuff –Shirts (AW 25)',
+    category: 'menswear',
+    subcategory: 'shirts',
+    brand: 'White Stuff',
+    season: 'AW25',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Exports',
+    featured: false,
+    description: 'Developed the AW\'25 Men\'s Shirt range plan for White Stuff, a UK lifestyle brand known for its relaxed, distinctive and effortlessly casual aesthetic. The range focused on balancing timeless shirt silhouettes with seasonal updates through contemporary checks, prints, textures, colours and fabrications. The assortment was planned to offer versatile, wearable pieces with a strong focus on comfort, quality and the brand\'s signature laid-back British character.',
+    coverImage: assetPath('White Stuff –Shirts (AW 25)', 'cover.jpg.jpg'),
+    images: buildSequenceImages('White Stuff –Shirts (AW 25)', 'AW\'25 whitestuff mens_page-', 2, 11, '.jpg', 4, 'White Stuff Mens Shirts AW25', 'contain'),
+    tags: ['menswear', 'shirts', 'white-stuff', 'aw25'],
+  },
+  {
+    id: 'house-of-pataudi-mens-range-plan',
+    title: 'House of Pataudi – Men\'s Range Plan',
+    category: 'menswear',
+    subcategory: 'range-planning',
+    brand: 'House of Pataudi',
+    season: 'Seasonal',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: true,
+    description: 'Developed the Men\'s range plan for House of Pataudi, a Myntra-owned brand co-founded with actor Saif Ali Khan. The range was designed to capture the brand\'s signature blend of contemporary Indian aesthetics and modern menswear, balancing heritage-inspired elements with versatile, fashion-forward silhouettes. Focused on creating a cohesive assortment across occasion, casual and everyday styles through refined colours, premium fabrications, prints, textures and thoughtful detailing, while maintaining strong commercial relevance for the Indian market.',
+    coverImage: assetPath('House of Pataudi – Men’s Range Plan', 'COVER.JPG.jpeg'),
+    images: buildSequenceImages('House of Pataudi – Men’s Range Plan', '71ddda72-95b2-4d8f-ac4e-be2b3864d406-', 1, 40, '.jpeg', 4, 'House of Pataudi Mens Range', 'cover'),
+    tags: ['menswear', 'range-plan', 'heritage', 'premium'],
+  },
+  {
+    id: 'marks-spencer-mens-bottoms-ss25',
+    title: 'Marks & Spencer – Men\'s Bottoms SS\'25',
+    category: 'menswear',
+    subcategory: 'bottoms',
+    brand: 'Marks & Spencer',
+    season: 'SS25',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: false,
+    description: 'Developed the SS\'25 Men\'s Bottoms range for Marks & Spencer, translating seasonal trends and market insights into a commercially relevant assortment. Worked across silhouette development, fabric and colour direction, detailing and styling to create a balanced mix of core and fashion-led bottoms. Managed sample development through the product creation process, refining fit, construction, detailing and overall execution to align with M&S\'s quality standards and customer expectations.',
+    coverImage: assetPath('Marks & Spencer – Men’s Bottoms SS’25  Range Planning & Sample Development', 'Menswear Portfolio_page-0001.jpg'),
+    images: buildSequenceImages('Marks & Spencer – Men’s Bottoms SS’25  Range Planning & Sample Development', 'Menswear Portfolio_page-', 1, 22, '.jpg', 4, 'M&S Mens Bottoms SS25', 'contain'),
+    tags: ['menswear', 'bottoms', 'ss25', 'sample-development'],
+  },
+  {
+    id: 'marks-spencer-mens-bottoms-aw25',
+    title: 'Marks & Spencer – Men\'s Bottoms AW\'25',
+    category: 'menswear',
+    subcategory: 'bottoms',
+    brand: 'Marks & Spencer',
+    season: 'AW25',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: false,
+    description: 'Developed the AW\'25 Men\'s Bottoms range plan for Marks & Spencer, translating seasonal trends and consumer insights into a commercially balanced assortment. Focused on key winter silhouettes, fabrications, colours and detailing, combining timeless core styles with contemporary seasonal updates. The range was curated to deliver versatility, comfort and refined everyday dressing while staying aligned with M&S\'s quality-driven and understated aesthetic.',
+    coverImage: assetPath('Marks & Spencer – Men’s Bottoms AW’25', '1786299213520-85274ebc-8be0-4257-965c-41a8a164cb05_1.jpg'),
+    images: buildSequenceImages('Marks & Spencer – Men’s Bottoms AW’25', '1786299213520-85274ebc-8be0-4257-965c-41a8a164cb05_', 1, 32, '.jpg', 0, 'M&S Mens Bottoms AW25', 'cover'),
+    tags: ['menswear', 'bottoms', 'aw25', 'range-plan'],
+  },
+  {
+    id: 'rendered-projects',
+    title: 'Rendered Projects',
+    category: 'menswear',
+    subcategory: '3d-rendering',
+    brand: 'Concept Project',
+    season: 'Portfolio',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Independent',
+    featured: false,
+    description: 'A selection of 3D-rendered fashion projects developed to translate design concepts into realistic digital representations. Explored silhouettes, fabric textures, colours, prints and garment detailing through digital rendering, with a focus on visualising the final product accurately and communicating design intent effectively.',
+    coverImage: assetPath('Rendered Projects', 'Menswear Portfolio (1)_page-0001.jpg'),
+    images: buildSequenceImages('Rendered Projects', 'Menswear Portfolio (1)_page-', 1, 8, '.jpg', 4, 'Rendered fashion project', 'contain'),
+    tags: ['menswear', 'rendering', 'digital-visualisation'],
+  },
+  {
+    id: 'hrx-kidswear',
+    title: 'HRX – Kidswear',
+    category: 'kidswear',
+    subcategory: 'activewear',
+    brand: 'HRX',
+    season: 'Seasonal',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: true,
+    description: 'Developed a kidswear collection for HRX, translating the brand\'s energetic, performance-driven identity into functional and trend-forward styles for young consumers. The collection focused on comfortable silhouettes, active-inspired details, dynamic colour palettes, sporty graphics and versatile pieces designed to support movement while maintaining a contemporary, youthful aesthetic.',
+    coverImage: assetPath('HRX – Kidswear', 'cover.jpg.jpg'),
+    images: buildSequenceImages('HRX – Kidswear', 'HRX_page-', 2, 5, '.jpg', 4, 'HRX Kidswear', 'contain'),
+    tags: ['kidswear', 'activewear', 'hrx'],
+  },
+  {
+    id: 'french-connection-kids-aw26',
+    title: 'French Connection-Kids (AW 26)',
+    category: 'kidswear',
+    subcategory: 'premium-kidswear',
+    brand: 'French Connection',
+    season: 'AW26',
+    year: '2026',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: true,
+    description: 'An ultra-minimal, premium kidswear collection that redefines classic preppy and street-utility styles through rich autumnal textures, sophisticated color-blocking, and sleek, understated brand carriers.',
+    coverImage: assetPath('French Connection-Kids (AW 26)', 'cover page.jpg'),
+    images: buildSequenceImages('French Connection-Kids (AW 26)', 'AW\'26 Linesheet -French Connection- Drop 1 Boys_page-', 2, 55, '.jpg', 4, 'French Connection Kids AW26', 'contain'),
+    tags: ['kidswear', 'aw26', 'premium', 'french-connection'],
+  },
+  {
+    id: 'yk-christmas-newyear-graphic-line',
+    title: 'YK – Christmas & New Year Capsule Collection | Graphic Line',
+    category: 'kidswear',
+    subcategory: 'graphic',
+    brand: 'YK',
+    season: 'Holiday',
+    year: '2025',
+    role: 'Apparel Designer',
+    company: 'Myntra',
+    featured: false,
+    description: 'Developed a festive Christmas & New Year capsule collection for YK, with a strong focus on graphic-led design. Created playful, youthful graphics inspired by festive motifs, celebrations and holiday elements, translating them into contemporary prints and placements suited to the brand\'s young customer. The collection balanced seasonal storytelling with commercially versatile styles, creating an energetic and celebratory graphic direction.',
+    coverImage: assetPath('YK – Christmas & New Year Capsule Collection  Graphic Line', 'cover page.jpg'),
+    images: buildSequenceImages('YK – Christmas & New Year Capsule Collection  Graphic Line', '1786298051197-010f94e7-e80a-4192-8fb8-74f2a9453059_', 2, 25, '.jpg', 0, 'YK Holiday Graphic Line', 'cover'),
+    tags: ['kidswear', 'graphic-line', 'holiday-capsule'],
+  },
+  {
+    id: 'gully-league-freelance-graphic',
+    title: 'GULLY LEAGUE-FREELANCE-GRAPHIC',
+    category: 'graphic-print',
+    subcategory: 'graphics',
+    brand: 'Freelance',
+    season: 'Portfolio',
+    year: '2025',
+    role: 'Graphic Apparel Designer',
+    company: 'Freelance',
+    featured: false,
+    description: 'Freelance graphic development work focused on bold visual storytelling, wearable placements and commercially adaptable print applications.',
+    coverImage: assetPath('GULLY LEAGUE-FREELANCE-GRAPHIC', 'daf2b6cb-e864-4872-b361-fd13215eed34-0000.jpeg'),
+    images: buildSequenceImages('GULLY LEAGUE-FREELANCE-GRAPHIC', 'daf2b6cb-e864-4872-b361-fd13215eed34-', 0, 8, '.jpeg', 4, 'Gully League Graphic', 'contain'),
+    tags: ['graphic-print', 'freelance', 'print-development'],
+  },
+  {
+    id: 'nautica-mens-techpack',
+    title: 'Nautica Mens Techpack',
+    category: 'tech-packs',
+    subcategory: 'tech-pack',
+    brand: 'Nautica',
+    season: 'Portfolio',
+    year: '2025',
+    role: 'Technical Designer',
+    company: 'Myntra',
+    featured: false,
+    description: 'Technical pack development for menswear styles, covering construction detail, measurements, trims and production-ready specification accuracy.',
+    coverImage: assetPath('Nautica Mens Techpack', 'Menswear Portfolio (2)_page-0001.jpg'),
+    images: buildSequenceImages('Nautica Mens Techpack', 'Menswear Portfolio (2)_page-', 1, 12, '.jpg', 4, 'Nautica Mens Techpack', 'contain'),
+    tags: ['tech-packs', 'menswear', 'technical-design'],
+  },
+  {
+    id: 'house-of-pataudi-techpack',
+    title: 'House of Pataudi Techpack',
+    category: 'tech-packs',
+    subcategory: 'tech-pack',
+    brand: 'House of Pataudi',
+    season: 'Portfolio',
+    year: '2025',
+    role: 'Technical Designer',
+    company: 'Myntra',
+    featured: false,
+    description: 'Detailed menswear technical pack series translating design intent into executable production specifications.',
+    coverImage: assetPath('House of Pataudi Techpack', '1786300372660-1cddddf5-54d4-41a0-99d8-41a2ae78ca77_1.jpg'),
+    images: buildSequenceImages('House of Pataudi Techpack', '1786300372660-1cddddf5-54d4-41a0-99d8-41a2ae78ca77_', 1, 9, '.jpg', 0, 'House of Pataudi Techpack', 'contain'),
+    tags: ['tech-packs', 'menswear', 'technical-design'],
+  },
+  {
+    id: 'graduation-project',
+    title: 'Graduation Project',
+    category: 'college-works',
+    subcategory: 'academic',
+    brand: 'College Work',
+    season: 'Final Year',
+    year: '2022',
+    role: 'Student Designer',
+    company: 'INIFD',
+    featured: false,
+    description: 'Graduation project portfolio presented in full PDF format. Click the preview to open and view full screen.',
     coverImage: '',
     images: [],
-
-    process: {
-      challenge:          'Managing two distinct brand personalities simultaneously — YK\'s contemporary youthful positioning vs. Sangria\'s aspirational lifestyle direction.',
-      research:           'Brand segmentation analysis and consumer data review for both labels on the Myntra platform.',
-      designDirection:    'Parallel creative directions per label — differentiated yet aligned with shared production calendar.',
-      development:        'Concurrent range development across both brands, coordinating fabric and trim selection to maximise efficiency.',
-      technicalExecution: 'Separate tech pack suites and fit approvals per brand.',
-      outcome:            'Both ranges launched on schedule on Myntra marketplace.',
-    },
-
-    tags: ['kidswear', 'casualwear', 'multi-brand', 'e-commerce', 'range-planning'],
+    documents: [pdfItem('assets/images/portfolio/Graduation Project.pdf', 'Graduation Project')],
+    tags: ['college-works', 'academic', 'pdf'],
   },
-
-
-  /* ----------------------------------------------------------
-     PROJECT 7 — Ambattur · Exports · Ann Taylor / J.Jill / Loft
-  ---------------------------------------------------------- */
   {
-    id:          'ann-taylor-jjill-loft-women',
-    title:       'Ann Taylor, J.Jill & Loft — Womenswear',
-    category:    'womenswear',
-    subcategory: 'woven',
-    brand:       'Ann Taylor / J.Jill / Loft',
-    season:      'AW23',
-    year:        '2023',
-    role:        'Fashion Designer – Exports',
-    company:     'Ambattur Clothing Ltd.',
-    featured:    false,
-
-    description: 'Woven tops and layering pieces for three American women\'s brands — premium detailing, fit precision and construction standards for the North American market.',
-
-    coverImage: assetPath('ann-taylor-jjill-loft-women', 'COVER.JPG.jpg'),
-    images: buildSequenceImages(
-      'ann-taylor-jjill-loft-women',
-      '1786296953532-4ba561bc-88d9-4e1e-953d-d13621d745f1_',
-      40,
-      58,
-      '.jpg',
-      0,
-      'Ann Taylor, J.Jill and Loft womenswear image',
-      'cover'
-    ),
-
-    process: {
-      challenge:          'Meeting three distinct North American brand standards — Ann Taylor\'s polished workwear, J.Jill\'s relaxed premium, and Loft\'s accessible contemporary — in parallel.',
-      research:           'Brand positioning research and seasonal direction review per label.',
-      designDirection:    'Brand-specific silhouettes with shared construction expertise in woven tops and layering.',
-      development:        'Fabric sourcing, trim selection and costing for North American price points.',
-      technicalExecution: 'Tech packs, fit corrections and bulk approvals per brand.',
-      outcome:            'Export collections approved and shipped to market for all three brands.',
-    },
-
-    tags: ['womenswear', 'woven', 'exports', 'international', 'tops', 'premium'],
+    id: 'lakme-fashion-week-college-work',
+    title: 'Lakme Fashion Week',
+    category: 'college-works',
+    subcategory: 'academic',
+    brand: 'College Work',
+    season: 'Showcase',
+    year: '2022',
+    role: 'Student Designer',
+    company: 'INIFD',
+    featured: false,
+    description: 'Lakme Fashion Week college presentation in PDF format. Click the preview to open and view full screen.',
+    coverImage: '',
+    images: [],
+    documents: [pdfItem('assets/images/portfolio/LAKME FASHION WEEK (1).pdf', 'Lakme Fashion Week')],
+    tags: ['college-works', 'fashion-week', 'pdf'],
+  },
+  {
+    id: 'print-portfolio-graphic-college-work',
+    title: 'Print Portfolio - Graphic',
+    category: 'graphic-print',
+    subcategory: 'print-portfolio',
+    brand: 'Graphic Portfolio',
+    season: 'Portfolio',
+    year: '2022',
+    role: 'Student Designer',
+    company: 'INIFD',
+    featured: false,
+    description: 'Graphic print portfolio in PDF format. Click the preview to open and view full screen.',
+    coverImage: '',
+    images: [],
+    documents: [pdfItem('assets/images/portfolio/PRINT PORTFOLIO-GRAPHIC.pdf', 'Print Portfolio Graphic')],
+    tags: ['graphic-print', 'graphic', 'pdf'],
   },
 
 
@@ -503,8 +577,8 @@ const experienceItems = [
     type:    'E-commerce',
     start:   'Feb 2025',
     end:     'Present',
-    description: 'End-to-end ownership of Kidswear and Women\'s Wear portfolios. Drove 400% category growth through trend-led range planning and fast design execution. Led design across Nautica, French Connection, YK, Sangria and House of Pataudi.',
-    brands:  ['Nautica', 'French Connection', 'YK', 'Sangria', 'House of Pataudi'],
+    description: 'End-to-end ownership of the Kidswear portfolio, driving 400% category growth through trend-led range planning and fast design execution. Designed commercially viable collections across Kidswear, Womenswear, and Menswear Sportswear for the brand list below, balancing fashion trends, consumer insights, costing, and speed-to-market while maintaining each brand\'s unique identity.',
+    brands:  ['Nautica', 'French Connection', 'YK', 'Sangria', 'House of Pataudi', 'Yellow Kite', 'Here & Now', 'HRX', 'Cuddleloom', 'Pixel Punk', 'BAESD', 'Dripteen', 'Wunderwoo', 'Sparkle Pop', 'Kalini'],
   },
   {
     role:    'Senior Executive / Freelance Designer',
