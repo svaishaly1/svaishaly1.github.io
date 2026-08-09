@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaishaly S — Apparel Designer</title>
+
+  <!-- ============================================================
+       SEO META TAGS
+       ============================================================ -->
+  <meta name="description" content="Vaishaly S — Apparel Designer with 4+ years across high-volume e-commerce and global exports. Specialising in Menswear, Womenswear and Kidswear. Bangalore, India.">
+  <meta name="keywords" content="apparel designer, fashion designer, womenswear, menswear, kidswear, tech pack, trend forecasting, product development, Bangalore, India, Myntra, Ambattur">
+  <meta name="author" content="Vaishaly S">
+  <meta name="robots" content="index, follow">
+
+  <!-- ============================================================
+       OPEN GRAPH — UPDATE og:url with your GitHub Pages URL
+       ============================================================ -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vaishaly S — Apparel Designer">
+  <meta property="og:description" content="Apparel Designer with 4+ years across high-volume e-commerce and global exports. Menswear · Womenswear · Kidswear.">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+    <meta property="og:url" content="https://svaishaly1.github.io">
+  <meta property="og:site_name" content="Vaishaly S Portfolio">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vaishaly S — Apparel Designer">
+  <meta name="twitter:description" content="Apparel Designer specialising in Menswear, Womenswear and Kidswear. 4+ years across e-commerce and global exports.">
+  <meta name="twitter:image" content="assets/images/og-image.jpg">
+
+  <!-- ============================================================
+       FONTS — Google Fonts
+       ============================================================ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ============================================================
+       CSS
+       ============================================================ -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="is-loading">
+
+  <!-- ============================================================
+       CUSTOM CURSOR (desktop only, hidden on touch)
+       ============================================================ -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       LOADING SCREEN
+       ============================================================ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-letters">
+        <span style="--i:0">V</span><span style="--i:1">A</span><span style="--i:2">I</span><span style="--i:3">S</span><span style="--i:4">H</span><span style="--i:5">A</span><span style="--i:6">L</span><span style="--i:7">Y</span>
+      </div>
+      <div class="loader-sub">Apparel Designer</div>
+    </div>
+    <div class="loader-progress" id="loaderProgress"></div>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="nav" id="nav" role="banner">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Vaishaly S — Home">
+        <span class="logo-initials">VS</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#expertise" class="nav-link">Expertise</a>
+        <a href="#process" class="nav-link">Process</a>
+        <a href="#brands" class="nav-link">Experience</a>
+        <a href="#portfolio" class="nav-link">Work</a>
+        <a href="#contact" class="nav-link nav-link--cta">Contact</a>
+      </nav>
+
+      <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="bar bar--top"></span>
+        <span class="bar bar--bottom"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="nav-mobile" id="navMobile" aria-hidden="true">
+    <nav aria-label="Mobile navigation">
+      <ul>
+        <li><a href="#about" class="mobile-nav-link">About</a></li>
+        <li><a href="#expertise" class="mobile-nav-link">Expertise</a></li>
+        <li><a href="#process" class="mobile-nav-link">Process</a></li>
+        <li><a href="#brands" class="mobile-nav-link">Experience</a></li>
+        <li><a href="#portfolio" class="mobile-nav-link">Work</a></li>
+        <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="mobile-contact-footer">
+      <a href="mailto:svaishaly.1@gmail.com">svaishaly.1@gmail.com</a>
+      <span>Bangalore, India</span>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============================================================
+         HERO SECTION
+         ============================================================ -->
+    <section class="hero" id="hero" aria-label="Introduction">
+
+      <!-- Hero background image — replace with your own editorial photograph -->
+      <div class="hero-bg" aria-hidden="true">
+        <!--
+          TO ADD HERO IMAGE:
+          1. Place your image at: assets/images/hero/hero.jpg
+          2. Uncomment the <img> tag below and delete the placeholder div
+        -->
+        <!-- <img src="assets/images/hero/hero.jpg" alt="" class="hero-bg-img"> -->
+        <div class="hero-bg-placeholder">
+          <span class="hero-placeholder-text">Hero Image<br><small>assets/images/hero/hero.jpg<br>Recommended: 1920×1080px or larger, landscape</small></span>
+          <div class="hero-bg-grid"></div>
+        </div>
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="hero-content">
+        <!-- Eyebrow tag -->
+        <div class="hero-tag hero-reveal" style="--hero-delay: 0ms">
+          <span>Apparel Designer</span>
+          <span class="tag-dot">·</span>
+          <span>Bangalore, India</span>
+        </div>
+
+        <!-- Main headline — each line animates in independently -->
+        <h1 class="hero-title">
+          <span class="hero-line hero-reveal" style="--hero-delay: 100ms">
+            <span class="hero-line-inner">Turning</span>
+          </span>
+          <span class="hero-line hero-line--italic hero-reveal" style="--hero-delay: 220ms">
+            <span class="hero-line-inner">Trends Into</span>
+          </span>
+          <span class="hero-line hero-reveal" style="--hero-delay: 340ms">
+            <span class="hero-line-inner">Commercial</span>
+          </span>
+          <span class="hero-line hero-line--outline hero-reveal" style="--hero-delay: 460ms">
+            <span class="hero-line-inner">Product.</span>
+          </span>
+        </h1>
+
+        <!-- Name & categories -->
+        <div class="hero-identity hero-reveal" style="--hero-delay: 620ms">
+          <span class="hero-name">VAISHALY S</span>
+          <span class="hero-sep">—</span>
+          <span class="hero-cats">Menswear · Womenswear · Kidswear</span>
+        </div>
+
+        <!-- CTAs -->
+        <div class="hero-cta hero-reveal" style="--hero-delay: 740ms">
+          <a href="#portfolio" class="btn btn--primary">View Work</a>
+          <a href="#about" class="btn btn--ghost">About Me</a>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero-scroll hero-reveal" style="--hero-delay: 900ms" aria-hidden="true">
+        <div class="scroll-line-track"><div class="scroll-line-fill"></div></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SKILLS MARQUEE TICKER
+         ============================================================ -->
+    <div class="marquee-band" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span>Trend Forecasting</span><span class="msep">·</span>
+          <span>Tech Pack Creation</span><span class="msep">·</span>
+          <span>Woven Apparel</span><span class="msep">·</span>
+          <span>Range Planning</span><span class="msep">·</span>
+          <span>Fit Sessions</span><span class="msep">·</span>
+          <span>Vendor Coordination</span><span class="msep">·</span>
+          <span>Costing &amp; Margin Alignment</span><span class="msep">·</span>
+          <span>Product Development</span><span class="msep">·</span>
+          <span>Technical Design</span><span class="msep">·</span>
+          <span>Assortment Planning</span><span class="msep">·</span>
+          <span>Cross-Functional Collaboration</span><span class="msep">·</span>
+          <span>AI Integration</span><span class="msep">·</span>
+          <!-- Duplicate set for seamless loop -->
+          <span>Trend Forecasting</span><span class="msep">·</span>
+          <span>Tech Pack Creation</span><span class="msep">·</span>
+          <span>Woven Apparel</span><span class="msep">·</span>
+          <span>Range Planning</span><span class="msep">·</span>
+          <span>Fit Sessions</span><span class="msep">·</span>
+          <span>Vendor Coordination</span><span class="msep">·</span>
+          <span>Costing &amp; Margin Alignment</span><span class="msep">·</span>
+          <span>Product Development</span><span class="msep">·</span>
+          <span>Technical Design</span><span class="msep">·</span>
+          <span>Assortment Planning</span><span class="msep">·</span>
+          <span>Cross-Functional Collaboration</span><span class="msep">·</span>
+          <span>AI Integration</span><span class="msep">·</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         ABOUT SECTION
+         ============================================================ -->
+    <section class="section about" id="about" aria-label="About Vaishaly S">
+      <div class="container">
+        <div class="about-grid">
+
+          <div class="about-image-col">
+            <div class="about-image-wrap reveal-left">
+              <!--
+                TO ADD PORTRAIT:
+                1. Place photo at: assets/images/about/portrait.jpg
+                2. Replace the placeholder div with:
+                   <img src="assets/images/about/portrait.jpg" alt="Vaishaly S — Apparel Designer" class="about-portrait">
+              -->
+              <div class="img-placeholder img-placeholder--portrait">
+                <div class="ph-inner">
+                  <div class="ph-icon">◻</div>
+                  <p>Portrait Photo</p>
+                  <small>assets/images/about/portrait.jpg<br>Recommended: 800×1000px, portrait</small>
+                </div>
+              </div>
+              <div class="about-image-accent" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="about-content-col">
+            <div class="section-label reveal-up">About</div>
+
+            <h2 class="section-title reveal-up">
+              Designing from<br>
+              <em>Concept to Production.</em>
+            </h2>
+
+            <div class="about-body reveal-up">
+              <p>
+                Apparel Designer with 4+ years of experience across high-volume
+                e-commerce and premium global exports — combining creative design
+                sensibility with strong commercial execution.
+              </p>
+              <p>
+                I specialise in Menswear, Womenswear, and Kidswear, with deep
+                expertise in woven apparel construction, trend forecasting, and
+                end-to-end product development. My work spans from concept and
+                moodboards through technical design, fit, and bulk production.
+              </p>
+              <p>
+                I've led design for high-volume e-commerce categories at Myntra,
+                working on brands including Nautica, French Connection, YK, Sangria,
+                and House of Pataudi — and developed export collections for global
+                brands at Ambattur Clothing Ltd.
+              </p>
+            </div>
+
+            <div class="about-stats reveal-up">
+              <div class="stat-item">
+                <span class="stat-number" data-count="4" data-suffix="+">4+</span>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-count="13" data-suffix="+">13+</span>
+                <span class="stat-label">Brands Designed For</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-count="3" data-suffix="">3</span>
+                <span class="stat-label">Apparel Categories</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" data-count="400" data-suffix="%">400%</span>
+                <span class="stat-label">Category Growth, Myntra</span>
+              </div>
+            </div>
+
+            <div class="about-ctas reveal-up">
+              <a href="#portfolio" class="btn btn--primary">View My Work</a>
+              <!--
+                UPDATE: Ensure your resume PDF is at assets/resume.pdf
+              -->
+              <a href="assets/resume.pdf" download="Vaishaly_S_Resume.pdf" class="btn btn--ghost">Download Resume</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EXPERTISE SECTION
+         ============================================================ -->
+    <section class="section expertise" id="expertise" aria-label="Expertise">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal-up">Expertise</div>
+          <h2 class="section-title reveal-up">
+            Craft. Commerce.<br>
+            <em>Execution.</em>
+          </h2>
+          <p class="section-sub reveal-up">
+            From trend research to production floor — I own every step of the design process.
+          </p>
+        </div>
+
+        <div class="expertise-grid" id="expertiseGrid">
+          <!-- Cards rendered by JS from data.js expertise array -->
+        </div>
+
+        <div class="specialisations reveal-up">
+          <span class="spec-label">Specialising in</span>
+          <div class="spec-tags">
+            <span>Menswear</span><span>Womenswear</span><span>Kidswear</span>
+            <span>Woven Apparel</span><span>Casualwear</span><span>Sportswear</span>
+            <span>Shirts &amp; Tops</span><span>Outerwear</span><span>Export Garments</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         DESIGN PROCESS SECTION
+         ============================================================ -->
+    <section class="section process" id="process" aria-label="Design process">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal-up">Process</div>
+          <h2 class="section-title reveal-up">
+            Concept to<br>
+            <em>Commercial Product.</em>
+          </h2>
+          <p class="section-sub reveal-up">
+            Every successful garment starts with insight and ends with impact.
+          </p>
+        </div>
+      </div>
+
+      <div class="process-steps">
+
+        <div class="process-step process-step--left reveal-left">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h3>Research</h3>
+            <p>Trend analysis, consumer insight, market research, competitive review. Understanding what the season demands before a single line is drawn.</p>
+            <div class="step-chips"><span>Trend Forecasting</span><span>Consumer Insight</span><span>Market Analysis</span></div>
+          </div>
+        </div>
+
+        <div class="process-step process-step--right reveal-right">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h3>Concept</h3>
+            <p>Developing the creative direction — moodboards, colour stories, fabric direction. Building the visual and strategic foundation of the range.</p>
+            <div class="step-chips"><span>Moodboards</span><span>Colour Stories</span><span>Creative Direction</span></div>
+          </div>
+        </div>
+
+        <div class="process-step process-step--left reveal-left">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h3>Design</h3>
+            <p>Translating direction into garment sketches, silhouettes, details and design language. Balancing creativity with commercial viability at every decision.</p>
+            <div class="step-chips"><span>Silhouette</span><span>Detailing</span><span>Commercial Balance</span></div>
+          </div>
+        </div>
+
+        <div class="process-step process-step--right reveal-right">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h3>Development</h3>
+            <p>Fabric and trim selection, construction planning, costing alignment. Ensuring design intent is feasible at scale, at margin, and on brand.</p>
+            <div class="step-chips"><span>Fabric Selection</span><span>Trim</span><span>Costing</span></div>
+          </div>
+        </div>
+
+        <div class="process-step process-step--left reveal-left">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <h3>Technical</h3>
+            <p>Creating detailed tech packs with measurements, construction specifications, grading notes and all production-ready documentation for every style.</p>
+            <div class="step-chips"><span>Tech Packs</span><span>Measurements</span><span>Specifications</span></div>
+          </div>
+        </div>
+
+        <div class="process-step process-step--right reveal-right">
+          <div class="step-num">06</div>
+          <div class="step-body">
+            <h3>Fit</h3>
+            <p>Sample review, fit sessions, corrections and approvals. Ensuring each garment performs exactly as designed across all size ranges.</p>
+            <div class="step-chips"><span>Fit Sessions</span><span>Corrections</span><span>Sample Approvals</span></div>
+          </div>
+        </div>
+
+        <div class="process-step process-step--left reveal-left">
+          <div class="step-num">07</div>
+          <div class="step-body">
+            <h3>Production</h3>
+            <p>Vendor coordination, bulk execution oversight, quality review. Bridging the gap between design intent and production reality, on time.</p>
+            <div class="step-chips"><span>Vendor Coordination</span><span>Bulk Execution</span><span>Quality</span></div>
+          </div>
+        </div>
+
+        <div class="process-step process-step--right reveal-right">
+          <div class="step-num">08</div>
+          <div class="step-body">
+            <h3>Market</h3>
+            <p>A commercially successful product reaching the consumer — on time, on budget, on brand. This is the goal that drives every project I work on.</p>
+            <div class="step-chips"><span>Launch</span><span>On-Time Delivery</span><span>Commercial Impact</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EXPERIENCE SECTION
+         ============================================================ -->
+    <section class="section experience" id="brands" aria-label="Professional experience">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal-up">Experience</div>
+          <h2 class="section-title reveal-up">
+            Where I've<br>
+            <em>Worked &amp; Designed.</em>
+          </h2>
+        </div>
+
+        <div class="exp-list" id="expList">
+          <!-- Experience rendered from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BRANDS MARQUEE
+         ============================================================ -->
+    <div class="brands-band">
+      <div class="container">
+        <p class="brands-note reveal-up">
+          Brands designed for through roles at Myntra and Ambattur Clothing Ltd.
+        </p>
+      </div>
+      <div class="brands-marquee" aria-hidden="true">
+        <div class="brands-track">
+          <div class="brands-content">
+            <span>Nautica</span><span class="bsep">·</span>
+            <span>French Connection</span><span class="bsep">·</span>
+            <span>Marks &amp; Spencer</span><span class="bsep">·</span>
+            <span>Mango</span><span class="bsep">·</span>
+            <span>Gap</span><span class="bsep">·</span>
+            <span>Banana Republic</span><span class="bsep">·</span>
+            <span>Ann Taylor</span><span class="bsep">·</span>
+            <span>House of Pataudi</span><span class="bsep">·</span>
+            <span>YK</span><span class="bsep">·</span>
+            <span>Sangria</span><span class="bsep">·</span>
+            <span>J.Jill</span><span class="bsep">·</span>
+            <span>Old Navy</span><span class="bsep">·</span>
+            <span>Loft</span><span class="bsep">·</span>
+            <span>Whitestuff</span><span class="bsep">·</span>
+            <!-- Duplicate for seamless loop -->
+            <span>Nautica</span><span class="bsep">·</span>
+            <span>French Connection</span><span class="bsep">·</span>
+            <span>Marks &amp; Spencer</span><span class="bsep">·</span>
+            <span>Mango</span><span class="bsep">·</span>
+            <span>Gap</span><span class="bsep">·</span>
+            <span>Banana Republic</span><span class="bsep">·</span>
+            <span>Ann Taylor</span><span class="bsep">·</span>
+            <span>House of Pataudi</span><span class="bsep">·</span>
+            <span>YK</span><span class="bsep">·</span>
+            <span>Sangria</span><span class="bsep">·</span>
+            <span>J.Jill</span><span class="bsep">·</span>
+            <span>Old Navy</span><span class="bsep">·</span>
+            <span>Loft</span><span class="bsep">·</span>
+            <span>Whitestuff</span><span class="bsep">·</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         PORTFOLIO SECTION
+         ============================================================ -->
+    <section class="section portfolio" id="portfolio" aria-label="Portfolio">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-label reveal-up">Portfolio</div>
+          <h2 class="section-title reveal-up">
+            Selected<br>
+            <em>Work.</em>
+          </h2>
+          <p class="section-sub reveal-up">
+            Womenswear · Menswear · Kidswear · Technical Design · Trend &amp; Concept<br>
+            <small>Portfolio images will be added shortly — project details and case studies are ready.</small>
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="portfolio-filter reveal-up" id="portfolioFilter" role="tablist" aria-label="Filter portfolio by category">
+          <!-- Rendered from data.js -->
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid" id="portfolioGrid" aria-live="polite">
+          <!-- Rendered from data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         RESUME SECTION
+         ============================================================ -->
+    <section class="section resume-section" id="resume" aria-label="Resume">
+      <div class="container">
+        <div class="resume-grid">
+
+          <div class="resume-text reveal-left">
+            <div class="section-label">Resume</div>
+            <h2 class="section-title">
+              4+ Years of<br>
+              <em>Design Excellence.</em>
+            </h2>
+            <p>
+              My full resume details experience across high-volume e-commerce
+              design at Myntra, premium export design at Ambattur Clothing Ltd.,
+              and internships at Superdry and AQUAAB Multi-Designer Store. BSc
+              Fashion Designing from INIFD, Chennai.
+            </p>
+            <div class="resume-ctas">
+              <!--
+                UPDATE: Place your resume PDF at assets/resume.pdf
+              -->
+              <a href="assets/resume.pdf" download="Vaishaly_S_Resume.pdf" class="btn btn--primary">
+                Download Resume
+              </a>
+              <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">
+                View Resume
+              </a>
+            </div>
+          </div>
+
+          <div class="resume-timeline reveal-right">
+            <div class="timeline-item">
+              <div class="tl-header">
+                <div>
+                  <strong>Design Associate</strong>
+                  <span class="tl-company">Myntra</span>
+                </div>
+                <span class="tl-date">Feb 2025 – Present</span>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="tl-header">
+                <div>
+                  <strong>Senior Executive / Freelance Designer</strong>
+                  <span class="tl-company">VNH – The Naidu Hall</span>
+                </div>
+                <span class="tl-date">Sep 2024 – Jan 2025</span>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="tl-header">
+                <div>
+                  <strong>Fashion Designer – Exports</strong>
+                  <span class="tl-company">Ambattur Clothing Ltd.</span>
+                </div>
+                <span class="tl-date">Jan 2023 – Aug 2024</span>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="tl-header">
+                <div>
+                  <strong>Customer Relationship Officer</strong>
+                  <span class="tl-company">Tommy Hilfiger</span>
+                </div>
+                <span class="tl-date">Sep 2022 – Jan 2023</span>
+              </div>
+            </div>
+            <div class="timeline-item timeline-item--edu">
+              <div class="tl-header">
+                <div>
+                  <strong>BSc. Fashion Designing</strong>
+                  <span class="tl-company">INIFD, Chennai</span>
+                </div>
+                <span class="tl-date">2019 – 2022</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTACT SECTION
+         ============================================================ -->
+    <section class="section contact" id="contact" aria-label="Contact">
+      <div class="container">
+        <div class="contact-inner">
+
+          <div class="section-label reveal-up">Contact</div>
+
+          <h2 class="contact-headline reveal-up">
+            Let's Create<br>
+            Something<br>
+            <em>Worth Wearing.</em>
+          </h2>
+
+          <div class="contact-grid">
+            <div class="contact-info reveal-left">
+              <div class="contact-row">
+                <span class="contact-label">Email</span>
+                <a href="mailto:svaishaly.1@gmail.com" class="contact-val">svaishaly.1@gmail.com</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-label">Phone</span>
+                <a href="tel:+917397310071" class="contact-val">+91 7397310071</a>
+              </div>
+              <div class="contact-row">
+                <span class="contact-label">Location</span>
+                <span class="contact-val">Bangalore, India</span>
+              </div>
+              <!--
+                UPDATE: Uncomment and add your LinkedIn/Instagram URLs when available
+
+                <div class="contact-row">
+                  <span class="contact-label">LinkedIn</span>
+                  <a href="https://linkedin.com/in/YOURPROFILE" target="_blank" rel="noopener noreferrer" class="contact-val">View Profile →</a>
+                </div>
+
+                <div class="contact-row">
+                  <span class="contact-label">Instagram</span>
+                  <a href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noopener noreferrer" class="contact-val">@yourusername</a>
+                </div>
+              -->
+              <div class="contact-row">
+                <span class="contact-label">Open to</span>
+                <span class="contact-val">Full-time · Freelance · Collaborations</span>
+              </div>
+            </div>
+
+            <div class="contact-right reveal-right">
+              <a href="mailto:svaishaly.1@gmail.com" class="contact-email-link">
+                svaishaly.1<wbr>@gmail.com
+              </a>
+              <a href="mailto:svaishaly.1@gmail.com" class="btn btn--primary btn--lg">Get In Touch</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="footer-name">VAISHALY S</span>
+          <span class="footer-sub">Apparel Designer · Bangalore, India</span>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <a href="#about">About</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#process">Process</a>
+          <a href="#portfolio">Work</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="footer-right">
+          <p>© <span id="year">2025</span> Vaishaly S</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       PROJECT MODAL
+       ============================================================ -->
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-label="Project detail" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-panel" id="modalPanel">
+      <button class="modal-close" id="modalClose" aria-label="Close project detail">
+        <span aria-hidden="true">✕</span> Close
+      </button>
+      <div class="modal-scroll">
+        <div class="modal-body" id="modalBody">
+          <!-- Rendered dynamically by main.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       LIGHTBOX
+       ============================================================ -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+    <div class="lb-backdrop" id="lbBackdrop"></div>
+    <div class="lb-content">
+      <button class="lb-close" id="lbClose" aria-label="Close image viewer">✕</button>
+      <button class="lb-prev" id="lbPrev" aria-label="Previous image">←</button>
+      <div class="lb-img-wrap">
+        <img id="lbImg" src="" alt="" class="lb-img">
+      </div>
+      <button class="lb-next" id="lbNext" aria-label="Next image">→</button>
+      <div class="lb-caption" id="lbCaption"></div>
+      <div class="lb-counter" id="lbCounter"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <!-- GSAP for advanced animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Portfolio data — EDIT THIS FILE to update content -->
+  <script src="js/data.js"></script>
+  <!-- Main application logic -->
+  <script src="js/main.js"></script>
+</body>
+</html>

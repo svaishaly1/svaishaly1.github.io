@@ -1,0 +1,17 @@
+PLACE YOUR PORTRAIT PHOTO IN THIS FOLDER
+=========================================
+
+PORTRAIT / HEADSHOT
+  Filename : portrait.jpg  (or portrait.webp, portrait.png)
+  Purpose  : Professional photo shown in the About section
+  Size     : 800×1000px minimum — larger is better
+  Format   : JPG, WebP, or PNG
+  Content  : Professional headshot, editorial portrait, or a photo of you
+             at work. The image is displayed in portrait ratio (4:5).
+  Notes    : A high-quality professional photo significantly improves
+             the first impression your portfolio makes on recruiters.
+
+After placing the file, update index.html:
+  - Find the About section (search for "img-placeholder--portrait")
+  - Replace the entire placeholder div with:
+    <img src="assets/images/about/portrait.jpg" alt="Vaishaly S — Apparel Designer" class="about-portrait">

@@ -1,0 +1,17 @@
+PLACE YOUR FILES IN THIS FOLDER
+================================
+
+HERO IMAGE
+  Filename : hero.jpg  (or hero.webp)
+  Purpose  : Full-width background for the homepage hero section
+  Size     : 1920×1080px minimum — larger is better (2560×1440px ideal)
+  Format   : JPG or WebP
+  Content  : Editorial fashion photograph — a lookbook image, garment flat-lay,
+             studio shot, or any image that communicates your design aesthetic
+  Notes    : The image is darkened by an overlay so text remains readable.
+             Dark-toned or moody images work especially well.
+
+After placing the file, update index.html:
+  - Find: <!-- <img src="assets/images/hero/hero.jpg" alt="" class="hero-bg-img"> -->
+  - Remove the <!-- and --> comment markers to activate the image
+  - Delete the placeholder div above it

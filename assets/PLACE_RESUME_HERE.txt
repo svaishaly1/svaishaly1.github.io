@@ -1,0 +1,17 @@
+RESUME PDF
+==========
+
+Place your resume PDF in the /assets/ folder.
+
+  Filename : resume.pdf
+  Full path: assets/resume.pdf
+
+The "Download Resume" and "View Resume" buttons in the website
+already point to this path. No code changes required.
+
+If you rename the file, update these two lines in index.html:
+  <a href="assets/resume.pdf" download="Vaishaly_S_Resume.pdf" ...>
+  <a href="assets/resume.pdf" target="_blank" ...>
+
+And update siteConfig.resumePdf in js/data.js:
+  resumePdf: 'assets/resume.pdf',

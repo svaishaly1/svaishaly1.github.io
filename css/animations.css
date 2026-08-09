@@ -1,0 +1,384 @@
+/* ============================================================
+   VAISHALY S — APPAREL DESIGNER PORTFOLIO
+   Animations Stylesheet
+
+   Contents:
+   01. Loader Animation
+   02. Hero Reveal Animations
+   03. Scroll Reveal Animations
+   04. Hover & Interaction Animations
+   05. GSAP-ready targets (classes used by main.js + GSAP)
+   ============================================================ */
+
+
+/* ============================================================
+   01. LOADER
+   ============================================================ */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-loader);
+  background: var(--black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s var(--ease), visibility 0.6s;
+}
+
+.loader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.loader-letters {
+  display: flex;
+  gap: 3px;
+}
+
+.loader-letters span {
+  font-family: var(--ff-sans);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(16px);
+  animation: loaderLetterIn 0.5s var(--ease-out) forwards;
+  animation-delay: calc(var(--i) * 60ms + 100ms);
+}
+
+@keyframes loaderLetterIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loader-sub {
+  font-family: var(--ff-sans);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  opacity: 0;
+  animation: loaderFadeIn 0.6s var(--ease) 0.7s forwards;
+}
+
+@keyframes loaderFadeIn {
+  to { opacity: 1; }
+}
+
+/* Progress bar at bottom */
+.loader-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  animation: loaderBar 0.9s var(--ease-out) 0.2s forwards;
+}
+
+@keyframes loaderBar {
+  to { width: 100%; }
+}
+
+
+/* ============================================================
+   02. HERO REVEAL ANIMATIONS
+   ============================================================ */
+
+/* Elements with .hero-reveal are hidden by default,
+   then activated with .is-visible when loader finishes */
+.hero-reveal {
+  opacity: 0;
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+  transition-delay: var(--hero-delay, 0ms);
+}
+
+.hero-reveal.is-visible {
+  opacity: 1;
+}
+
+/* Hero line clip reveal — text slides up from behind a mask */
+.hero-line .hero-line-inner {
+  transform: translateY(105%);
+  transition: transform 1s var(--ease-out);
+  transition-delay: var(--hero-delay, 0ms);
+}
+
+.hero-line.is-visible .hero-line-inner {
+  transform: translateY(0);
+}
+
+/* Other hero elements slide up */
+.hero-tag.hero-reveal,
+.hero-identity.hero-reveal,
+.hero-cta.hero-reveal,
+.hero-scroll.hero-reveal {
+  transform: translateY(20px);
+}
+
+.hero-tag.hero-reveal.is-visible,
+.hero-identity.hero-reveal.is-visible,
+.hero-cta.hero-reveal.is-visible,
+.hero-scroll.hero-reveal.is-visible {
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   03. SCROLL REVEAL ANIMATIONS
+   Apply .reveal-up, .reveal-left, or .reveal-right to any element.
+   JS will add .is-visible when it enters the viewport.
+   ============================================================ */
+
+/* Base hidden state */
+.reveal-up,
+.reveal-left,
+.reveal-right {
+  opacity: 0;
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  /* Optional delay via CSS custom property: style="--delay: 0.2s" */
+  transition-delay: var(--delay, 0s);
+}
+
+.reveal-up    { transform: translateY(40px); }
+.reveal-left  { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+
+/* Visible state */
+.reveal-up.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+
+/* ============================================================
+   04. HOVER & INTERACTION ANIMATIONS
+   ============================================================ */
+
+/* Portfolio card — image zoom on hover handled in style.css;
+   additional shimmer effect for placeholder cards */
+.portfolio-card .card-ph::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255,255,255,0.12) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: none;
+}
+
+.portfolio-card:hover .card-ph::after {
+  transform: translateX(100%);
+  transition: transform 0.7s var(--ease);
+}
+
+/* Expertise card number — subtle shift */
+.expertise-card .card-num {
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.expertise-card:hover .card-num {
+  transform: translateY(-2px);
+}
+
+/* Process step hover — number glow */
+.process-step .step-num {
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.process-step:hover .step-num {
+  transform: scale(1.05);
+}
+
+/* Brand tags hover */
+.exp-brand-tag {
+  transition: all 0.2s var(--ease);
+}
+
+.exp-brand-tag:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+/* Spec tags hover (already handled in style.css, animation here) */
+.spec-tags span {
+  transition: background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+/* Filter button transition */
+.filter-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--black);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease);
+}
+
+.filter-btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.filter-btn.is-active::before {
+  transform: scaleX(1);
+}
+
+/* Timeline item hover */
+.timeline-item {
+  transition: padding-left 0.2s var(--ease);
+}
+
+.timeline-item:hover {
+  padding-left: 8px;
+}
+
+/* Contact email hover */
+.contact-email-link {
+  display: inline-block;
+  transition: letter-spacing 0.5s var(--ease), color 0.3s var(--ease);
+}
+
+/* Nav logo pulse on hover */
+.nav-logo {
+  transition: letter-spacing 0.3s var(--ease), color 0.2s var(--ease);
+}
+
+.nav-logo:hover {
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+
+/* Mobile nav link animation */
+.mobile-nav-link {
+  transform-origin: left;
+}
+
+/* Footer link underline sweep */
+.footer-nav a {
+  position: relative;
+}
+
+.footer-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(255,255,255,0.6);
+  transition: width 0.25s var(--ease);
+}
+
+.footer-nav a:hover::after {
+  width: 100%;
+}
+
+
+/* ============================================================
+   05. GSAP SCROLL-TRIGGER TARGETS
+   These classes are targeted by GSAP in main.js.
+   They don't need CSS animation — GSAP handles everything.
+   ============================================================ */
+
+/* Stat numbers — counted up by GSAP when visible */
+.stat-number[data-count] {
+  /* Base state; GSAP animates inline */
+}
+
+/* Process step — GSAP applies stagger from left/right */
+.process-step {
+  will-change: transform, opacity;
+}
+
+/* Section titles — optional GSAP split-text effect target */
+.section-title {
+  will-change: opacity, transform;
+}
+
+
+/* ============================================================
+   UTILITY: no-transition for instant state changes
+   ============================================================ */
+.no-transition * {
+  transition: none !important;
+  animation: none !important;
+}
+
+
+/* ============================================================
+   REDUCED MOTION OVERRIDES
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .loader-letters span,
+  .loader-sub,
+  .loader-progress {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-reveal,
+  .hero-line .hero-line-inner {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .reveal-up,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .marquee-content,
+  .brands-content {
+    animation: none !important;
+  }
+
+  .scroll-line-fill {
+    animation: none !important;
+    background: var(--accent);
+  }
+
+  .loader.is-done {
+    display: none;
+  }
+}
