@@ -74,6 +74,10 @@ function pdfItem(src, alt) {
   return { src: src, alt: alt || 'PDF document', fit: 'contain', type: 'pdf' };
 }
 
+function githubLfsMediaPath(path) {
+  return 'https://media.githubusercontent.com/media/svaishaly1/svaishaly1.github.io/main/' + path;
+}
+
 function buildSequenceImages(folder, prefix, start, end, suffix, pad, altPrefix, fit) {
   const images = [];
   for (let index = start; index <= end; index += 1) {
@@ -426,7 +430,7 @@ const portfolioProjects = [
     description: 'Graduation project portfolio presented in full PDF format. Click the preview to open and view full screen.',
     coverImage: '',
     images: [],
-    documents: [pdfItem('assets/images/portfolio/Graduation Project.pdf', 'Graduation Project')],
+    documents: [pdfItem(githubLfsMediaPath('assets/images/portfolio/Graduation%20Project.pdf'), 'Graduation Project')],
     tags: ['college-works', 'academic', 'pdf'],
   },
   {
@@ -443,7 +447,7 @@ const portfolioProjects = [
     description: 'Lakme Fashion Week college presentation in PDF format. Click the preview to open and view full screen.',
     coverImage: '',
     images: [],
-    documents: [pdfItem('assets/images/portfolio/LAKME FASHION WEEK (1).pdf', 'Lakme Fashion Week')],
+    documents: [pdfItem(githubLfsMediaPath('assets/images/portfolio/LAKME%20FASHION%20WEEK%20(1).pdf'), 'Lakme Fashion Week')],
     tags: ['college-works', 'fashion-week', 'pdf'],
   },
   {
@@ -460,7 +464,7 @@ const portfolioProjects = [
     description: 'Graphic print portfolio in PDF format. Click the preview to open and view full screen.',
     coverImage: '',
     images: [],
-    documents: [pdfItem('assets/images/portfolio/PRINT PORTFOLIO-GRAPHIC.pdf', 'Print Portfolio Graphic')],
+    documents: [pdfItem(githubLfsMediaPath('assets/images/portfolio/PRINT%20PORTFOLIO-GRAPHIC.pdf'), 'Print Portfolio Graphic')],
     tags: ['graphic-print', 'graphic', 'pdf'],
   },
 
