@@ -468,7 +468,7 @@ button {
   height: 100svh;
   min-height: 620px;
   display: flex;
-  align-items: flex-end;
+  align-items: stretch;
   overflow: hidden;
   background: var(--black);
 }
@@ -543,7 +543,11 @@ button {
   max-width: var(--container-max);
   width: 100%;
   margin: 0 auto;
-  padding: 0 var(--container-pad) 96px;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 140px var(--container-pad) 80px;
 }
 
 .hero-tag {
@@ -568,8 +572,9 @@ button {
   line-height: 0.92;
   letter-spacing: -0.025em;
   color: var(--white);
-  font-size: clamp(60px, 11vw, 148px);
+  font-size: clamp(56px, 9.4vw, 132px);
   margin-bottom: 36px;
+  max-width: 12ch;
 }
 
 .hero-line {
@@ -2301,11 +2306,13 @@ a.contact-val:hover {
 
   /* Hero */
   .hero-content {
-    padding-bottom: 72px;
+    min-height: 100svh;
+    padding: 108px var(--container-pad) 72px;
   }
 
   .hero-title {
-    font-size: clamp(48px, 13vw, 80px);
+    font-size: clamp(42px, 12vw, 74px);
+    max-width: 100%;
   }
 
   .hero-identity {
@@ -2422,6 +2429,11 @@ a.contact-val:hover {
 }
 
 @media (max-width: 480px) {
+  .hero-content {
+    padding-top: 96px;
+    padding-bottom: 64px;
+  }
+
   .hero-tag { display: none; }
   .hero-cta { flex-direction: column; }
   .about-ctas { flex-direction: column; }

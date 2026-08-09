@@ -17,13 +17,15 @@
 2. [How to add your profile photo](#2-how-to-add-your-profile-photo)
 3. [How to add the hero background image](#3-how-to-add-the-hero-background-image)
 4. [How to add your resume PDF](#4-how-to-add-your-resume-pdf)
-5. [How to add portfolio images to a project](#5-how-to-add-portfolio-images-to-a-project)
-6. [How to add a brand new project to the portfolio](#6-how-to-add-a-brand-new-project-to-the-portfolio)
-7. [How to change your name, email or phone number](#7-how-to-change-your-name-email-or-phone-number)
-8. [How to add your LinkedIn or Instagram](#8-how-to-add-your-linkedin-or-instagram)
-9. [How to put your website live on the internet (GitHub Pages)](#9-how-to-put-your-website-live-on-the-internet-github-pages)
-10. [Where everything is stored on your computer](#10-where-everything-is-stored-on-your-computer)
-11. [Image tips and sizes](#11-image-tips-and-sizes)
+5. [Exactly where to upload each file](#5-exactly-where-to-upload-each-file)
+6. [How many pictures you can add](#6-how-many-pictures-you-can-add)
+7. [How to add portfolio images to a project](#7-how-to-add-portfolio-images-to-a-project)
+8. [How to add a brand new project to the portfolio](#8-how-to-add-a-brand-new-project-to-the-portfolio)
+9. [How to change your name, email or phone number](#9-how-to-change-your-name-email-or-phone-number)
+10. [How to add your LinkedIn or Instagram](#10-how-to-add-your-linkedin-or-instagram)
+11. [How to put your website live on the internet (GitHub Pages)](#11-how-to-put-your-website-live-on-the-internet-github-pages)
+12. [Where everything is stored on your computer](#12-where-everything-is-stored-on-your-computer)
+13. [Image tips and sizes](#13-image-tips-and-sizes)
 
 ---
 
@@ -138,7 +140,71 @@ That's it! The "Download Resume" and "View Resume" buttons on your website will 
 
 ---
 
-## 5. How to add portfolio images to a project
+## 5. Exactly where to upload each file
+
+If you only want the quick answer, use this table:
+
+| What you want to add | Folder location | File name to use |
+|---|---|---|
+| Your main top background image | `C:\Users\rh2\vaishaly-portfolio\assets\images\hero\` | `hero.jpg` |
+| Your portrait photo | `C:\Users\rh2\vaishaly-portfolio\assets\images\about\` | `portrait.jpg` |
+| Your resume PDF | `C:\Users\rh2\vaishaly-portfolio\assets\` | `resume.pdf` |
+| A project's main cover image | `C:\Users\rh2\vaishaly-portfolio\assets\images\portfolio\YOUR-PROJECT-FOLDER\` | `cover.jpg` |
+| Extra project images | `C:\Users\rh2\vaishaly-portfolio\assets\images\portfolio\YOUR-PROJECT-FOLDER\` | Any name, for example `moodboard.jpg`, `sketch-1.jpg`, `final-1.jpg` |
+
+### Project folder names currently used in your website
+
+Use these exact folder names if you want to add images to the projects already created:
+
+| Project | Folder name |
+|---|---|
+| Nautica Kidswear | `nautica-kidswear-ss25` |
+| House of Pataudi Men's Sportsline | `house-of-pataudi-sportsline` |
+| Marks & Spencer Woven Exports | `ms-womenswear-exports` |
+| French Connection Womenswear | `french-connection-womenswear` |
+| Gap & Banana Republic Menswear | `gap-banana-republic-menswear` |
+| YK & Sangria Kids Collections | `yk-sangria-kidswear` |
+| Ann Taylor, J.Jill & Loft Womenswear | `ann-taylor-jjill-loft-women` |
+
+---
+
+## 6. How many pictures you can add
+
+You can add:
+
+1. **1 hero background image** at the top of the homepage
+2. **1 portrait image** in the About section
+3. **1 resume PDF**
+4. **1 cover image for each project**
+5. **As many extra images as you want inside each project**
+
+### Simple answer
+
+There is **no strict limit** built into the website for project gallery images.
+
+### Best recommendation
+
+For each project, a good professional setup is:
+
+1. `1` cover image
+2. `3 to 8` extra images for the inside gallery
+
+That means you can show things like:
+
+1. Moodboard
+2. Trend research
+3. Sketches
+4. Fabric or trim details
+5. Technical drawing
+6. Tech pack page
+7. Fit / development image
+8. Final garment image
+
+If you add too many very large images, the page may load more slowly, so keeping each project around `3 to 10` gallery images is a practical range.
+
+---
+
+## 7. How to add portfolio images to a project
 
 Each project on your website has its own folder for images.
 
@@ -192,7 +258,7 @@ Each project on your website has its own folder for images.
 
 ---
 
-## 6. How to add a brand new project to the portfolio
+## 8. How to add a brand new project to the portfolio
 
 **Step 1 — Open the data file**
 1. Open: `C:\Users\rh2\vaishaly-portfolio\js\data.js` in Notepad
@@ -225,9 +291,17 @@ Each project on your website has its own folder for images.
 6. Add images (follow the steps in section 5 above)
 7. Refresh your browser to see the new project card!
 
+### Important
+
+Every new project should have:
+
+1. A unique folder inside `assets\images\portfolio\`
+2. A `cover.jpg` image if you want the card to show a main image
+3. Any number of extra gallery images
+
 ---
 
-## 7. How to change your name, email or phone number
+## 9. How to change your name, email or phone number
 
 **Step 1**
 1. Open: `C:\Users\rh2\vaishaly-portfolio\js\data.js` in Notepad
@@ -249,7 +323,7 @@ Each project on your website has its own folder for images.
 
 ---
 
-## 8. How to add your LinkedIn or Instagram
+## 10. How to add your LinkedIn or Instagram
 
 **Step 1 — Add the links in the data file**
 1. Open: `C:\Users\rh2\vaishaly-portfolio\js\data.js` in Notepad
@@ -283,7 +357,7 @@ Each project on your website has its own folder for images.
 
 ---
 
-## 9. How to put your website live on the internet (GitHub Pages)
+## 11. How to put your website live on the internet (GitHub Pages)
 
 GitHub Pages is a **free** hosting service. This makes your website available to anyone in the world with a link.
 
@@ -334,7 +408,7 @@ GitHub Pages is a **free** hosting service. This makes your website available to
 
 ---
 
-## 10. Where everything is stored on your computer
+## 12. Where everything is stored on your computer
 
 ```
 vaishaly-portfolio/
@@ -370,7 +444,7 @@ vaishaly-portfolio/
 
 ---
 
-## 11. Image tips and sizes
+## 13. Image tips and sizes
 
 | What the image is for | Best format | Recommended size |
 |---|---|---|
