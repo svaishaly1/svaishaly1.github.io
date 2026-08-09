@@ -590,29 +590,8 @@
           '<div class="ph-inner"><div class="ph-icon">◻</div><p>' + sanitise(project.title) + '</p>' +
           '<small>Add: assets/images/portfolio/' + sanitise(project.id) + '/cover.jpg</small></div></div></div>';
 
-    /* Process section */
-    let processHtml = '';
-    if (project.process) {
-      const steps = [
-        { key: 'challenge',          label: 'Challenge' },
-        { key: 'research',           label: 'Research' },
-        { key: 'designDirection',    label: 'Design Direction' },
-        { key: 'development',        label: 'Development' },
-        { key: 'technicalExecution', label: 'Technical Execution' },
-        { key: 'outcome',            label: 'Outcome' },
-      ];
-
-      const itemsHtml = steps.filter(function (s) { return project.process[s.key]; }).map(function (s) {
-        return '<div class="proj-process-item">' +
-          '<span class="proj-process-key">' + sanitise(s.label) + '</span>' +
-          '<p class="proj-process-val">' + sanitise(project.process[s.key]) + '</p>' +
-        '</div>';
-      }).join('');
-
-      processHtml = itemsHtml
-        ? '<div class="proj-process"><h3>Design Process</h3><div class="proj-process-items">' + itemsHtml + '</div></div>'
-        : '';
-    }
+    /* Process section removed */
+    const processHtml = '';
 
     /* Gallery */
     let galleryHtml = '';

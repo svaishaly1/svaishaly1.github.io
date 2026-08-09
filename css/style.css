@@ -530,9 +530,10 @@ button {
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(13,13,13,0.90) 0%,
-    rgba(13,13,13,0.40) 50%,
-    rgba(13,13,13,0.15) 100%
+    rgba(13,13,13,0.97) 0%,
+    rgba(13,13,13,0.82) 40%,
+    rgba(13,13,13,0.70) 65%,
+    rgba(13,13,13,0.50) 100%
   );
 }
 
@@ -575,6 +576,7 @@ button {
   font-size: clamp(56px, 9.4vw, 132px);
   margin-bottom: 36px;
   max-width: 12ch;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.6);
 }
 
 .hero-line {
@@ -606,6 +608,12 @@ button {
   gap: 16px;
   margin-bottom: 36px;
   flex-wrap: wrap;
+  padding: 10px 14px;
+  background: rgba(13,13,13,0.55);
+  border-left: 2px solid var(--accent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  width: fit-content;
 }
 
 .hero-name {
